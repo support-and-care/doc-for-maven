@@ -234,11 +234,18 @@ available everywhere.
 
 === "Windows (PowerShell)"
 
-    Set the environment variables for your user:
+    Set the environment variables for your user. The snippet below is
+    safe to re-run. It only appends to `Path` if Maven is not already
+    there:
 
     ```powershell
-    [Environment]::SetEnvironmentVariable("MAVEN_HOME", "C:\Tools\apache-maven-3.9.16", "User")
-    [Environment]::SetEnvironmentVariable("Path", "$env:Path;%MAVEN_HOME%\bin", "User")
+    $mavenHome = "C:\Tools\apache-maven-3.9.16"
+    [Environment]::SetEnvironmentVariable("MAVEN_HOME", $mavenHome, "User")
+
+    $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+    if ($userPath -notlike "*$mavenHome\bin*") {
+      [Environment]::SetEnvironmentVariable("Path", "$userPath;$mavenHome\bin", "User")
+    }
     ```
 
     Or use the GUI: **Settings → System → About → Advanced system
@@ -277,7 +284,8 @@ If you see this, **Maven is installed and ready to use**.
     - you opened a **new** terminal after editing your environment
       variables.
 
-    Run `echo $PATH` (macOS/Linux) or `echo %PATH%` (Windows) to inspect
+    Run `echo $PATH` (macOS/Linux), `echo $env:PATH` (Windows
+    PowerShell), or `echo %PATH%` (Windows Command Prompt) to inspect
     your current path.
 
 ??? failure "`JAVA_HOME is not defined correctly`"
@@ -288,8 +296,9 @@ If you see this, **Maven is installed and ready to use**.
     - the directory exists and contains `bin/java` (or `bin\java.exe`
       on Windows).
 
-    Run `echo $JAVA_HOME` (or `echo %JAVA_HOME%`) to inspect the
-    current value.
+    Run `echo $JAVA_HOME` (macOS/Linux), `echo $env:JAVA_HOME`
+    (Windows PowerShell), or `echo %JAVA_HOME%` (Windows Command
+    Prompt) to inspect the current value.
 
 ??? failure "Wrong Java version is used"
     `mvn -v` prints the JDK Maven is actually using. If it is not the
