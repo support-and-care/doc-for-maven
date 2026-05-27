@@ -1,110 +1,107 @@
-# Download and Install Apache Maven
+# Installing Apache Maven
 
-Maven is a command-line tool. Installing it means putting the `mvn`
-command on your `PATH` so you can run it from any terminal.
+Apache Maven is a command-line build tool, so installing it means making the `mvn` command available from a terminal.
 
-This page walks you through:
+This guide covers three steps:
 
-1. checking that you have a working Java installation,
-2. installing Maven (using a package manager or the official archive),
-3. verifying that everything works.
-
-If you are in a hurry and already know your way around your operating
-system, jump straight to the [package-manager](#install-with-a-package-manager)
-or [manual install](#install-from-the-binary-archive) section.
+1. installing and configuring a Java Development Kit (JDK);
+2. downloading and installing Maven;
+3. verifying the Maven installation.
 
 ## Prerequisites: a working JDK
 
-Maven is itself a Java application, so you need a **Java Development
-Kit (JDK)** installed before you install Maven.
+Maven runs on the Java platform and requires a **Java Development Kit (JDK)** to execute.
+A JDK (not a JRE) is required, because Maven invokes compiler tools such as `javac` during a build.
 
-| Maven version | Required JDK to run Maven |
+The minimum required JDK version depends on the Maven version in use:
+
+| Maven version | Minimum JDK |
 |---|---|
-| Maven 3.9.x (current stable) | JDK 8 or later |
-| Maven 4.x (preview)          | JDK 17 or later |
+| Maven 3.x | JDK 8 |
+| Maven 4.x | JDK 17 |
 
-!!! tip "JDK vs. JRE"
-    You need a JDK, not just a JRE. The JDK includes the tools (such as
-    `javac`) that Maven uses to compile your projects.
+Any modern JDK distribution is suitable.
 
-You can use any modern JDK distribution, for example
-[Eclipse Temurin](https://adoptium.net/),
-[Amazon Corretto](https://aws.amazon.com/corretto/),
-[Azul Zulu](https://www.azul.com/downloads/),
-[Microsoft Build of OpenJDK](https://learn.microsoft.com/en-us/java/openjdk/),
-or the [Oracle JDK](https://www.oracle.com/java/technologies/downloads/).
+### Verify your JDK installation
 
-### Check your JDK
+Before installing Maven, confirm that a compatible JDK is available on the system.
 
 Open a new terminal and run:
 
 ```sh
 java -version
-javac -version
 ```
 
-You should see something similar to:
+The output should be similar to:
 
 ```text
 openjdk version "21.0.4" 2024-07-16 LTS
-javac 21.0.4
+OpenJDK Runtime Environment (build 21.0.4+7-LTS)
+OpenJDK 64-Bit Server VM (build 21.0.4+7-LTS, mixed mode, sharing)
 ```
 
-If either command is *not* found, install a JDK first and then come back.
+If the command is not found, install a JDK and verify the installation again.
 
-### Set `JAVA_HOME` (recommended)
+### Configure `JAVA_HOME`
 
-Maven looks for Java by checking the `JAVA_HOME` environment variable
-first, then falling back to the `java` executable on your `PATH`.
-Setting `JAVA_HOME` explicitly makes your setup predictable and easier
-to debug.
+Maven uses the `JAVA_HOME` environment variable to locate the JDK at runtime.
+Maven may fail to start when `JAVA_HOME` is missing or points to an invalid directory, even when the `java` executable is on the `PATH`.
+Configure `JAVA_HOME` so that it is available in every shell session that runs Maven.
 
 === "macOS / Linux (bash, zsh)"
 
-    Add the following to your shell profile (`~/.zshrc`, `~/.bashrc`,
-    `~/.profile`, depending on your shell), replacing the path with
-    your actual JDK location:
+    Add the following lines to the shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.profile`), and replace the path with the actual JDK location:
 
     ```sh
     export JAVA_HOME=/path/to/your/jdk
     export PATH="$JAVA_HOME/bin:$PATH"
     ```
 
-    On macOS, you can let the system locate your JDK:
+    On macOS, the helper `/usr/libexec/java_home` returns the currently installed JDK location:
 
     ```sh
     export JAVA_HOME=$(/usr/libexec/java_home)
     ```
 
-    Reload the shell (`source ~/.zshrc`) or open a new terminal.
+    Reload the shell (`source ~/.zshrc`) or open a new terminal so the change takes effect.
 
 === "Windows (PowerShell)"
 
-    Set the variable for your user account:
+    Set the variable for the current user account:
 
     ```powershell
     [Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Java\jdk-21", "User")
     ```
 
-    You can also set it through **Settings → System → About →
-    Advanced system settings → Environment Variables**.
+    Alternatively, configure the variable through the graphical interface.
+    Navigate to `Settings` → `System` → `About` → `Advanced system settings` → `Environment Variables`, or search for `Environment Variables` using the Windows search bar.
 
-    Open a new PowerShell or Command Prompt window so the change takes
-    effect.
+    Open a new PowerShell or Command Prompt window so the change takes effect.
 
 ## Install Maven
 
 There are two common ways to install Maven:
 
-- **With a package manager.** This is the quickest path on most
-  systems and lets the package manager handle upgrades.
-- **From the official binary archive.** This gives you full control
-  over the exact version and where Maven lives on disk.
+- **Through a package manager.** This is the quickest path on most systems, and the package manager handles upgrades.
+- **From the official binary archive.** This gives full control over the installed version and its location on disk.
 
-Pick whichever fits your environment. Both produce a working `mvn`
-command.
+Both approaches result in a working `mvn` command.
+Most package managers configure the `PATH` automatically; the binary-archive method requires this to be done manually, as described in [Add Maven to the `PATH`](#3-add-maven-to-the-path).
 
 ### Install with a package manager
+
+The package managers listed below are some of the most commonly used.
+They are not the only options — other Java toolchain managers can install Maven as well.
+
+=== "Cross-platform"
+
+    [SDKMAN!](https://sdkman.io/) is available on macOS, Linux, and Windows Subsystem for Linux, and can install Maven alongside several JDK distributions:
+
+    ```sh
+    sdk install maven
+    ```
+
+    SDKMAN! adds `mvn` to the `PATH` automatically.
 
 === "macOS"
 
@@ -112,13 +109,6 @@ command.
 
     ```sh
     brew install maven
-    ```
-
-    With [SDKMAN!](https://sdkman.io/) (handy if you also manage
-    multiple JDKs):
-
-    ```sh
-    sdk install maven
     ```
 
     With [MacPorts](https://www.macports.org/):
@@ -129,7 +119,7 @@ command.
 
 === "Linux"
 
-    The exact command depends on your distribution's package manager:
+    The exact command depends on the distribution's package manager:
 
     ```sh
     # Debian / Ubuntu
@@ -143,11 +133,7 @@ command.
     sudo yum install maven
     ```
 
-    !!! note "Distro packages can lag behind"
-        Linux distributions sometimes ship an older Maven release. If
-        you need a specific version, prefer the
-        [binary archive](#install-from-the-binary-archive) or
-        [SDKMAN!](https://sdkman.io/).
+    Distributions other than those listed (for example, Arch Linux) ship Maven through their own package managers as well.
 
 === "Windows"
 
@@ -163,70 +149,75 @@ command.
     scoop install main/maven
     ```
 
-After the package manager finishes, skip ahead to
-[Verify the installation](#verify-the-installation).
+!!! note "Package manager versions may lag behind"
+    Every package manager ships Maven some time after a release is published by the Apache Maven team, because each tool depends on that release as its source.
+    For tools such as Homebrew, Chocolatey, Scoop, and SDKMAN!, the delay is usually a few days.
+    Linux distribution repositories often lag behind by weeks or months.
+    To install a specific (especially the latest) Maven version, prefer [the binary archive](#install-from-the-binary-archive) or [SDKMAN!](https://sdkman.io/).
+
+After the package manager finishes, continue with [Verify the installation](#verify-the-installation).
 
 ### Install from the binary archive
 
-This method works on any operating system and gives you the exact
-version published by the Apache Maven project.
+This method works on any system and installs the exact version published by the Apache Maven team.
+
+The steps below use Maven `3.9.16` as an example.
+Replace the version number with the version that was downloaded.
 
 #### 1. Download the archive
 
-Go to the [Maven download page](https://maven.apache.org/download.html)
-and download the latest **binary** distribution:
+Open the [Maven download page](https://maven.apache.org/download.html) and download the latest **binary** distribution.
+Two formats are offered:
 
-- `apache-maven-<version>-bin.zip` — works on every platform, easiest
-  on Windows,
+- `apache-maven-<version>-bin.zip` — works on every platform and is the most convenient on Windows;
 - `apache-maven-<version>-bin.tar.gz` — convenient on macOS and Linux.
 
-!!! tip "Verify the download (optional but recommended)"
-    For production setups, verify the download against the published
-    [PGP signatures and checksums](https://www.apache.org/info/verification.html)
-    using the public [KEYS](https://downloads.apache.org/maven/KEYS)
-    file.
+!!! tip "Verify the integrity of the download (optional but recommended)"
+    For production setups, check the downloaded archive against the published [PGP signatures and checksums](https://www.apache.org/info/verification.html) using the public [KEYS](https://downloads.apache.org/maven/KEYS) file.
+    This ensures the archive has not been tampered with during transfer.
 
 #### 2. Extract the archive
 
-Extract it to a directory you control. A few common conventions:
+Extract the archive into a directory of choice, for example:
 
-- macOS / Linux: `/opt/apache-maven-<version>` or
-  `~/tools/apache-maven-<version>`
-- Windows: `C:\Program Files\Apache\apache-maven-<version>` or
-  `C:\Tools\apache-maven-<version>`
+- macOS / Linux: `/opt/apache-maven-3.9.16` or `~/tools/apache-maven-3.9.16`
+- Windows: `C:\apache-maven-3.9.16` or `C:\Program Files\Apache\apache-maven-3.9.16`
 
 === "macOS / Linux"
+
+    The example below assumes the archive `apache-maven-3.9.16-bin.tar.gz` was downloaded, and extracts it into `/opt`, which creates `/opt/apache-maven-3.9.16`:
 
     ```sh
     sudo tar -xzf apache-maven-3.9.16-bin.tar.gz -C /opt
     ```
 
-    This creates `/opt/apache-maven-3.9.16`.
-
 === "Windows (PowerShell)"
 
+    The example below assumes the archive `apache-maven-3.9.16-bin.zip` was downloaded, and extracts it into `C:\`, which creates `C:\apache-maven-3.9.16`:
+
     ```powershell
-    Expand-Archive -Path apache-maven-3.9.16-bin.zip -DestinationPath C:\Tools
+    Expand-Archive -Path apache-maven-3.9.16-bin.zip -DestinationPath C:\
     ```
 
-    This creates `C:\Tools\apache-maven-3.9.16`.
+#### 3. Add Maven to the `PATH`
 
-#### 3. Add Maven to your `PATH`
+To make the `mvn` command available from any terminal, add the `bin` directory of the Maven installation to the `PATH` environment variable.
 
-Maven needs its `bin` directory on your `PATH` so the `mvn` command is
-available everywhere.
+!!! note
+    Some installation methods (SDKMAN!, Homebrew, Chocolatey, Scoop, and most Linux package managers) configure `PATH` automatically.
+    This step is therefore only required when Maven was installed from the binary archive.
+
+The examples below assume Maven `3.9.16` was extracted to the directory shown in the previous step.
 
 === "macOS / Linux (bash, zsh)"
 
-    Add these lines to your shell profile (`~/.zshrc`, `~/.bashrc`,
-    `~/.profile`):
+    Add the following line to the shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.profile`):
 
     ```sh
-    export MAVEN_HOME=/opt/apache-maven-3.9.16
-    export PATH="$MAVEN_HOME/bin:$PATH"
+    export PATH="/opt/apache-maven-3.9.16/bin:$PATH"
     ```
 
-    Reload your shell, for example:
+    Reload the shell, for example:
 
     ```sh
     source ~/.zshrc
@@ -234,36 +225,34 @@ available everywhere.
 
 === "Windows (PowerShell)"
 
-    Set the environment variables for your user. The snippet below is
-    safe to re-run. It only appends to `Path` if Maven is not already
-    there:
+    The snippet below appends Maven's `bin` directory to the user-level `Path`.
+    It is safe to re-run: the directory is only added when it is not already present.
 
     ```powershell
-    $mavenHome = "C:\Tools\apache-maven-3.9.16"
-    [Environment]::SetEnvironmentVariable("MAVEN_HOME", $mavenHome, "User")
-
+    $mavenBin = "C:\apache-maven-3.9.16\bin"
     $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
-    if ($userPath -notlike "*$mavenHome\bin*") {
-      [Environment]::SetEnvironmentVariable("Path", "$userPath;$mavenHome\bin", "User")
+    if ($userPath -notlike "*$mavenBin*") {
+      [Environment]::SetEnvironmentVariable("Path", "$userPath;$mavenBin", "User")
     }
     ```
 
-    Or use the GUI: **Settings → System → About → Advanced system
-    settings → Environment Variables**, then add `MAVEN_HOME` and
-    append `%MAVEN_HOME%\bin` to `Path`.
+    Alternatively, use the graphical interface.
+    Navigate to `Settings` → `System` → `About` → `Advanced system settings` → `Environment Variables` (or search for `Environment Variables` using the Windows search bar), then append `C:\apache-maven-3.9.16\bin` to the `Path` variable.
 
-    Open a new terminal so the changes take effect.
+    Open a new terminal so the change takes effect.
 
 ## Verify the installation
 
-Open a **new** terminal (so it picks up your new environment variables)
-and run:
+Open a **new** terminal so the latest environment variables are picked up, and run:
 
 ```sh
 mvn -v
 ```
 
-You should see output similar to this:
+The alternative `mvn --version` produces the same output.
+
+The output reports the installed Maven version, the Maven installation directory, the JDK Maven is using, and basic operating-system information.
+Example:
 
 ```text
 Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
@@ -273,46 +262,42 @@ Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "6.8.0", arch: "amd64", family: "unix"
 ```
 
-If you see this, **Maven is installed and ready to use**.
+If such output is shown, **Maven is correctly set up and ready to use**.
 
 ## Troubleshooting
 
 ??? failure "`mvn: command not found` (or `'mvn' is not recognized...`)"
-    The `mvn` command is not on your `PATH`. Confirm that:
+    The `mvn` command is not on the `PATH`.
+    Confirm that:
 
-    - the `bin/` directory inside your Maven installation is on `PATH`,
-    - you opened a **new** terminal after editing your environment
-      variables.
+    - the `bin` directory inside the Maven installation is on `PATH`;
+    - the current terminal was opened **after** the environment variables were updated.
 
-    Run `echo $PATH` (macOS/Linux), `echo $env:PATH` (Windows
-    PowerShell), or `echo %PATH%` (Windows Command Prompt) to inspect
-    your current path.
+    Inspect the current `PATH` with `echo $PATH` (macOS/Linux), `echo $env:PATH` (Windows PowerShell), or `echo %PATH%` (Windows Command Prompt).
 
 ??? failure "`JAVA_HOME is not defined correctly`"
-    Maven cannot find your JDK. Check that:
+    Maven cannot find the JDK.
+    Check that:
 
-    - `JAVA_HOME` points to a JDK directory (not a JRE, and not the
-      `bin/` subdirectory),
-    - the directory exists and contains `bin/java` (or `bin\java.exe`
-      on Windows).
+    - `JAVA_HOME` points to a directory where a JDK is installed (not a JRE, and not the `bin/` subdirectory of a JDK);
+    - that directory exists and contains `bin/java` (or `bin\java.exe` on Windows).
 
-    Run `echo $JAVA_HOME` (macOS/Linux), `echo $env:JAVA_HOME`
-    (Windows PowerShell), or `echo %JAVA_HOME%` (Windows Command
-    Prompt) to inspect the current value.
+    Inspect the current value with `echo $JAVA_HOME` (macOS/Linux), `echo $env:JAVA_HOME` (Windows PowerShell), or `echo %JAVA_HOME%` (Windows Command Prompt).
 
 ??? failure "Wrong Java version is used"
-    `mvn -v` prints the JDK Maven is actually using. If it is not the
-    one you expect, your `JAVA_HOME` or `PATH` is pointing at a
-    different JDK. Update `JAVA_HOME` and open a new shell.
+    The output of `mvn -v` reports the JDK Maven is using.
+    If it does not match the expected JDK, either `JAVA_HOME` or `PATH` points to a different JDK installation.
+    Update whichever is incorrect and open a new shell.
+
+    Each Maven version also requires a minimum JDK version, as listed in [Prerequisites: a working JDK](#prerequisites-a-working-jdk).
+    For example, running Maven 4 with a JDK older than 17 will fail.
 
 ??? question "Behind a corporate proxy?"
-    If Maven cannot download dependencies on first use, you may need
-    to configure a proxy in `~/.m2/settings.xml`. See the
-    [Guide to Configuring Maven](https://maven.apache.org/guides/mini/guide-configuring-maven.html).
+    Maven may be unable to download dependencies on first use when running behind a corporate proxy.
+    Configure a proxy in `~/.m2/settings.xml` as described in the [Guide to Configuring Maven](https://maven.apache.org/guides/mini/guide-configuring-maven.html).
 
 ## What's next?
 
-Maven is installed and verified. You are now ready to build your first
-project.
+Once Maven is installed and verified, the next step is to build a sample project.
 
 [Continue: Basic project sample →](basic-project-sample.md)
