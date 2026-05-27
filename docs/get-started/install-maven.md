@@ -5,7 +5,7 @@ Apache Maven is a command-line build tool, so installing it means making the `mv
 This guide covers three steps:
 
 1. installing and configuring a Java Development Kit (JDK);
-2. downloading and installing Maven;
+2. installing Maven;
 3. verifying the Maven installation.
 
 ## Prerequisites: a working JDK
