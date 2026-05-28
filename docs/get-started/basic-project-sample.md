@@ -128,8 +128,7 @@ At this point, `pom.xml` contains the `properties`, `dependencies`, and `build` 
 
 Use the following full file to verify your `pom.xml`.
 
-<details>
-  <summary>Final <code>pom.xml</code></summary>
+### Final `pom.xml`
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -167,8 +166,6 @@ Use the following full file to verify your `pom.xml`.
   </build>
 </project>
 ```
-
-</details>
 
 ## 7. Add tests
 
