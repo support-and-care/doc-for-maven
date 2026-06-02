@@ -73,8 +73,11 @@ Maven is a good choice when the following are needed:
 
 To avoid surprises later, it helps to know what Maven is **not**:
 
-- It is **not an IDE**. All modern IDEs integrate Maven out of the box.
-- It is **not a CI server**. Maven runs the build; the CI server runs Maven. Maven is also not a deployment tool: in the past, it was sometimes misused to distribute build artifacts to production, which is not its purpose.
+- It is **not an IDE**.
+All modern IDEs integrate Maven out of the box.
+- It is **not a CI server**.
+Maven runs the build; the CI server runs Maven.
+Maven is also not a deployment tool: in the past, it was sometimes misused to distribute build artifacts to production, which is not its purpose.
 
 ## Next steps
 

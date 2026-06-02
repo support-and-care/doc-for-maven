@@ -6,9 +6,10 @@ Static docs for Maven, built with [Zensical](https://zensical.org/).
 
 1. Python 3.14+ (or match your environment).
 2. Node (optional, needed for markdown linting configured as pre-commit hook)
-2. Create a virtualenv and install Zensical:
+3. Create a virtualenv and install Zensical:
 
 For Linux/Mac:
+
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
@@ -17,6 +18,7 @@ pre-commit install
 ```
 
 For Windows CMD:
+
 ```sh
 python -m venv .venv
 .venv/bin/activate.bat
@@ -24,15 +26,16 @@ pip install zensical pre-commit
 pre-commit install
 ```
 
-
 You can deactivate the virtualenv with:
 
 For Linux/Mac:
+
 ```sh
 deactivate
 ```
 
 For Windows:
+
 ```sh
 deactivate.bat
 ```
