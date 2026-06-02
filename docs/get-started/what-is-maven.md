@@ -32,6 +32,7 @@ Once the required libraries are declared in `pom.xml`, Maven will:
 - download any other library **that** library needs (its *transitive* dependencies),
 - cache it locally so it is not re-downloaded every time it is needed,
 - make it available to the compiler, tests, and packaging step.
+- and automate many other parts of the build lifecycle, such as compilation, testing, packaging, reporting, and plugin execution.
 
 ### 3. It gives every project the same shape
 
