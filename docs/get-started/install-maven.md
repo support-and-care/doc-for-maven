@@ -1,5 +1,8 @@
 # Installing Apache Maven
 
+<!-- markdownlint-disable MD046 -->
+<!-- MkDocs Material content tabs (===) and admonitions indent body text; markdownlint misreports that as indented code blocks. -->
+
 Apache Maven is a command-line build tool, so installing it means making the `mvn` command available from a terminal.
 
 This guide covers three steps:
@@ -16,7 +19,7 @@ A JDK (not a JRE) is required, because Maven invokes compiler tools such as `jav
 The minimum required JDK version depends on the Maven version in use:
 
 | Maven version | Minimum JDK |
-|---|---|
+| --- | --- |
 | Maven 3.x | JDK 8 |
 | Maven 4.x | JDK 17 |
 
@@ -204,8 +207,8 @@ Extract the archive into a directory of choice, for example:
 To make the `mvn` command available from any terminal, add the `bin` directory of the Maven installation to the `PATH` environment variable.
 
 !!! note
-    Some installation methods (SDKMAN!, Homebrew, Chocolatey, Scoop, and most Linux package managers) configure `PATH` automatically.
-    This step is therefore only required when Maven was installed from the binary archive.
+    If Maven was installed with a package manager ([Install with a package manager](#install-with-a-package-manager)), `PATH` is already configured and this step can be skipped.
+    The binary archive does not update `PATH` — follow the steps below to add Maven manually.
 
 The examples below assume Maven `3.9.16` was extracted to the directory shown in the previous step.
 
