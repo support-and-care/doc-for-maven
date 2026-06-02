@@ -1240,6 +1240,9 @@
 
 
 <h1 id="installing-apache-maven">Installing Apache Maven<a class="headerlink" href="#installing-apache-maven" title="Permanent link">&para;</a></h1>
+<!-- markdownlint-disable MD046 -->
+<!-- MkDocs Material content tabs (===) and admonitions indent body text; markdownlint misreports that as indented code blocks. -->
+
 <p>Apache Maven is a command-line build tool, so installing it means making the <code>mvn</code> command available from a terminal.</p>
 <p>This guide covers three steps:</p>
 <ol>
@@ -1406,8 +1409,8 @@ This ensures the archive has not been tampered with during transfer.</p>
 <p>To make the <code>mvn</code> command available from any terminal, add the <code>bin</code> directory of the Maven installation to the <code>PATH</code> environment variable.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Some installation methods (SDKMAN!, Homebrew, Chocolatey, Scoop, and most Linux package managers) configure <code>PATH</code> automatically.
-This step is therefore only required when Maven was installed from the binary archive.</p>
+<p>If Maven was installed with a package manager (<a href="#install-with-a-package-manager">Install with a package manager</a>), <code>PATH</code> is already configured and this step can be skipped.
+The binary archive does not update <code>PATH</code> — follow the steps below to add Maven manually.</p>
 </div>
 <p>The examples below assume Maven <code>3.9.16</code> was extracted to the directory shown in the previous step.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">macOS / Linux (bash, zsh)</label><label for="__tabbed_4_2">Windows (PowerShell)</label></div>
