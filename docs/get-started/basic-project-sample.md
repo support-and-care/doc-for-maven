@@ -3,7 +3,6 @@
 This guide walks through a small Java project to learn how a Maven project is organized and how its `pom.xml` is built up step by step.
 It focuses on the [standard directory layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), a minimal `pom.xml`, running a build, declaring dependencies, configuring a plugin, and writing a test.
 
-It does not cover every Maven topic (for example multi-module builds or publishing artifacts).
 For background on what Maven is and why projects use it, see [What is Maven (for)?](what-is-maven.md).
 Maven must already be installed, see [Installing Apache Maven](install-maven.md).
 
@@ -70,14 +69,13 @@ Add a `properties` section to control how the compiler and resources behave, wit
 
 ```xml
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 ```
 
-- `maven.compiler.source` — Java language level used when compiling (here Java 17).
-- `maven.compiler.target` — bytecode version written to `target/classes` (here Java 17).
+- `maven.compiler.release` — Java language level used when compiling (here Java 17).
+The compiler plugin maps this to the `--release` flag so source and bytecode target stay aligned.
 - `project.build.sourceEncoding` — character encoding for source and resource files (UTF-8 avoids platform-specific default issues).
 
 ## 3. Add application code
@@ -105,10 +103,9 @@ The path under `src/main/java` must match the `package` declaration (`com.exampl
 From the project root (`hello-maven`), compile and package the project.
 
 ```sh
-mvn clean package
+mvn package
 ```
 
-- `clean` — deletes the `target/` directory from earlier builds.
 - `package` — compiles main sources and packages the result into a JAR under `target/`.
 
 Maven creates `target/` automatically.
@@ -118,6 +115,13 @@ Run the application (adjust the JAR name if your `artifactId` or `version` diffe
 
 ```sh
 java -cp target/hello-maven-1.0.0-SNAPSHOT.jar com.example.App
+```
+
+After the build finishes, compiled classes, the packaged JAR, and other build output live in the `target/` directory at the project root.
+To remove that output (for example before sharing the project folder or to force a full rebuild), run:
+
+```sh
+mvn clean
 ```
 
 ## 5. Add a compile-scoped dependency
@@ -151,7 +155,7 @@ Add JUnit Jupiter inside the same `dependencies` block (alongside the compile de
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.13.1</version>
+      <version>6.1.0</version>
       <scope>test</scope>
     </dependency>
 ```
@@ -177,7 +181,7 @@ Add a `build` section to `pom.xml`:
   </build>
 ```
 
-Without a compatible Surefire version, JUnit 5 tests may not be discovered or executed.
+Without a compatible Surefire version, JUnit 6 tests may not be discovered or executed.
 
 ## 8. Add a test class
 
@@ -208,7 +212,8 @@ From the project root:
 mvn test
 ```
 
-Maven compiles main and test sources, then Surefire runs `AppTest`.
+Maven compiles main and test sources, then Surefire runs the tests in `AppTest`.
+The `test` phase also runs earlier [lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html) phases (including `compile`), which is why invoking `mvn test` compiles sources even though you did not call `mvn compile` explicitly.
 If the build finishes with `BUILD SUCCESS`, the project layout, `pom.xml`, dependency scopes, and plugin configuration are working together.
 
 ### Final `pom.xml`
@@ -226,8 +231,7 @@ After all steps, `pom.xml` should look like this (use it to verify your file).
   <version>1.0.0-SNAPSHOT</version>
 
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -240,7 +244,7 @@ After all steps, `pom.xml` should look like this (use it to verify your file).
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.13.1</version>
+      <version>6.1.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
