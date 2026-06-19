@@ -1,10 +1,22 @@
 # Basic project example
 
+<!-- markdownlint-disable MD046 -->
+<!-- Content tabs (===) indent body text; markdownlint misreports that as indented code blocks. -->
+
+## About this guide
+
 This guide walks through a small Java project to learn how a Maven project is organized and how its `pom.xml` is built up step by step.
 It focuses on the [standard directory layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), a minimal `pom.xml`, running a build, declaring dependencies, configuring a plugin, and writing a test.
 
-For background on what Maven is and why projects use it, see [What is Maven (for)?](what-is-maven.md).
-Maven must already be installed, see [Installing Apache Maven](install-maven.md).
+### Prerequisites
+
+Before starting this tutorial, you should have:
+
+- a basic understanding of what Maven is — see [What is Maven (for)?](what-is-maven.md)
+- Maven installed and available on your `PATH` — see [Installing Apache Maven](install-maven.md)
+
+This guide does not assume you read other pages in order.
+If you landed here directly, read those two pages first.
 
 The example uses the project folder name `hello-maven` and the Java package `com.example`.
 Both names are only examples, choose any project name and package that fit your own work.
@@ -14,8 +26,7 @@ Both names are only examples, choose any project name and package that fit your 
 Maven expects a predictable folder structure so builds work the same way in every project.
 Source code, resources, tests, and the project descriptor each have fixed places under `src/` and the project root.
 
-Create an empty project folder (for example `hello-maven`) and the following directories inside it.
-No Java files are required yet, those are added in later steps.
+This is the layout you'll create:
 
 ```text
 hello-maven/
@@ -34,12 +45,41 @@ hello-maven/
 ```
 
 - `pom.xml` — project object model: coordinates, dependencies, plugins, and build settings.
-- `src/main/java` — production Java sources (here under `com/example` for package `com.example`).
-- `src/main/resources` — production non-code files (for example configuration files on the classpath).
+- `src/main/java` — production Java sources.
+Java maps packages to folders, so package `com.example` lives under `com/example`.
+- `src/main/resources` — production non-code files (for example, configuration files on the classpath).
 - `src/test/java` — test Java sources, mirroring the main package layout.
 - `src/test/resources` — files used only during tests.
 
-## 1. Add project coordinates in `pom.xml`
+## 1. Create the project structure
+
+Run the command for your platform.
+It creates every folder above and an empty `pom.xml`.
+You'll fill in `pom.xml` in the next step, Java files come later.
+
+=== "macOS / Linux"
+
+    ```sh
+    mkdir -p hello-maven/src/{main,test}/{java/com/example,resources} \
+      && touch hello-maven/pom.xml
+    ```
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    $root = "hello-maven"
+    "src/main/java/com/example",
+    "src/main/resources",
+    "src/test/java/com/example",
+    "src/test/resources" |
+      ForEach-Object { New-Item -ItemType Directory -Path "$root/$_" -Force | Out-Null }
+    New-Item -ItemType File -Path "$root/pom.xml" -Force | Out-Null
+    ```
+
+Verify the result with `tree hello-maven` (or `ls -R hello-maven` on macOS/Linux, `dir /s hello-maven` on Windows).
+It should match the layout shown above.
+
+## 2. Add project coordinates in `pom.xml`
 
 Create `pom.xml` in the project root with the minimum information Maven needs to identify the project.
 
@@ -63,7 +103,7 @@ Create `pom.xml` in the project root with the minimum information Maven needs to
 Together, `groupId`, `artifactId`, and `version` are the project **coordinates**.
 They uniquely identify the artifact Maven builds.
 
-## 2. Add compiler and encoding properties
+## 3. Add compiler and encoding properties
 
 Add a `properties` section to control how the compiler and resources behave, without repeating values in every plugin configuration.
 
@@ -78,7 +118,7 @@ Add a `properties` section to control how the compiler and resources behave, wit
 The compiler plugin maps this to the `--release` flag so source and bytecode target stay aligned.
 - `project.build.sourceEncoding` — character encoding for source and resource files (UTF-8 avoids platform-specific default issues).
 
-## 3. Add application code
+## 4. Add application code
 
 For example, create `src/main/java/com/example/App.java` with the following content.
 
@@ -98,7 +138,7 @@ public class App {
 
 The path under `src/main/java` must match the `package` declaration (`com.example` → `com/example/`).
 
-## 4. Run the first build
+## 5. Run the first build
 
 From the project root (`hello-maven`), compile and package the project.
 
@@ -124,7 +164,7 @@ To remove that output (for example before sharing the project folder or to force
 mvn clean
 ```
 
-## 5. Add a compile-scoped dependency
+## 6. Add a compile-scoped dependency
 
 Dependencies declare libraries Maven downloads and places on the classpath.
 **Compile** scope (the default when `scope` is omitted) applies to production code: the library is available when compiling and running the main application.
@@ -144,7 +184,7 @@ The example below uses Apache Commons Lang, it is not used in `App.java` here, b
 
 When Maven runs goals such as `compile` or `package`, it resolves declared dependencies from configured repositories (by default [Maven Central](https://search.maven.org/)) and caches them locally.
 
-## 6. Add a test-scoped dependency
+## 7. Add a test-scoped dependency
 
 Tests often use a separate library that must not ship with the application.
 **Test** scope limits a dependency to compiling and running tests.
@@ -162,7 +202,7 @@ Add JUnit Jupiter inside the same `dependencies` block (alongside the compile de
 
 A dependency with `test` scope is not on the classpath when packaging the main JAR for production use.
 
-## 7. Add a plugin for running tests
+## 8. Add a plugin for running tests
 
 Plugins attach behavior to Maven's [build lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html).
 The Surefire plugin runs unit tests during the `test` phase.
@@ -183,7 +223,13 @@ Add a `build` section to `pom.xml`:
 
 Without a compatible Surefire version, JUnit 6 tests may not be discovered or executed.
 
-## 8. Add a test class
+## 9. Add a test class
+
+Steps 7 and 8 added JUnit and the Surefire plugin so Maven can compile and run tests.
+This step adds a small unit test that checks `App.greeting()` returns the expected text.
+
+Automated tests catch regressions when code changes and document expected behavior for other developers.
+In the next step, `mvn test` runs this class through Surefire as part of the build.
 
 For example, create `src/test/java/com/example/AppTest.java`:
 
@@ -204,7 +250,7 @@ class AppTest {
 
 Test classes live under `src/test/java` with the same package layout as the code they verify.
 
-## 9. Run the tests
+## 10. Run the tests
 
 From the project root:
 
@@ -216,7 +262,15 @@ Maven compiles main and test sources, then Surefire runs the tests in `AppTest`.
 The `test` phase also runs earlier [lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html) phases (including `compile`), which is why invoking `mvn test` compiles sources even though you did not call `mvn compile` explicitly.
 If the build finishes with `BUILD SUCCESS`, the project layout, `pom.xml`, dependency scopes, and plugin configuration are working together.
 
-### Final `pom.xml`
+If the build fails instead, check the following before re-running:
+
+- **BUILD FAILURE with a compilation error** — usually a typo in `App.java` or `AppTest.java`, or a package/folder mismatch (see [step 4](#4-add-application-code)).
+- **No tests found / tests not discovered** — confirm the Surefire plugin from [step 8](#8-add-a-plugin-for-running-tests) is present in `pom.xml`; JUnit 6 tests are not discovered without it.
+- **Dependency resolution errors** — check your network connection and that the `groupId`, `artifactId`, and version in [step 6](#6-add-a-compile-scoped-dependency) and [step 7](#7-add-a-test-scoped-dependency) are typed correctly.
+
+Compare your `pom.xml` against the complete file below to spot differences.
+
+### ✅ Verify your `pom.xml` file
 
 After all steps, `pom.xml` should look like this (use it to verify your file).
 
