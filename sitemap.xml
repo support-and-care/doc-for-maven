@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/get-started/what-is-maven/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/get-started/what-is-maven/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/get-started/install-maven/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/get-started/install-maven/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/get-started/basic-project-sample/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/get-started/basic-project-sample/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/learning-paths/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/learning-paths/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/usage/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/usage/</loc>
       </url>
       <url>
-        <loc>https://support-and-care.github.io/getting-started-doc-for-maven/community/</loc>
+        <loc>https://support-and-care.github.io/doc-for-maven/community/</loc>
       </url>
 </urlset>
