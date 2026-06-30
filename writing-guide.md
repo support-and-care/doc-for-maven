@@ -53,9 +53,9 @@ The landing page should be designed around different persona's and their learnin
 You can organize the landing page according to those categories:
 
 - **By role / persona**:
-  - Maven User: User who has no prior knowledge about Maven
-  - Build engineer/DevOps engineer: Needs to understand how to correctly deploy and maintain Maven software
-  - Developers: Consume the Maven software product
+  - Maven User: 
+    - Build engineer/DevOps engineer: Needs to understand how to correctly deploy and maintain Maven software (deep understanding)
+    - App dev: Consume the Maven software product
   - Plugins developer: Advanced users who want to build custom tooling using Maven
   - Maven Developer: Contribute to the Maven software
 
