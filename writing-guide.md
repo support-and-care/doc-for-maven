@@ -52,9 +52,17 @@ A disorganized entry point undermines developer experience as they might start a
 The landing page should be designed around different persona's and their learning flows.
 You can organize the landing page according to those categories:
 
-- **By role / persona** — e.g. "Application developer", "Plugin author", "DevOps engineer".
+- **By role / persona**:
+  - Maven User: User who has no prior knowledge about Maven
+  - Build engineer/DevOps engineer: Needs to understand how to correctly deploy and maintain Maven software
+  - Developers: Consume the Maven software product
+  - Plugins developer: Advanced users who want to build custom tooling using Maven
+  - Maven Developer: Contribute to the Maven software
+
 Each persona links to a tailored flow.
-- **By product or module** — when the docs portal spans multiple products, list products at level 1, each leading to its own product homepage at level 2.
+
+- **By product** — when the docs portal spans multiple products, list products at level 1, each leading to its own product homepage at level 2.
+We exclude any module (plugin documentation) from this home page.
 - **By task or intent** — e.g. "Get started", "Configure a build", "Migrate from X".
 
 The goal is that a reader can identify in under 10 seconds "that's me" and start the learning journey they need.
@@ -71,7 +79,7 @@ This kind of structure is extremely important for devs to understand the informa
 
 - [ ] Can a first-time visitor identify their path in under 5 seconds?
 - [ ] Are the four content types discoverable from here?
-- [ ] Does "Get Started" stand out as the primary CTA?
+- [ ] Does "Get Started" stand out as the primary Call-To-Action (CTA)?
 - [ ] Is the page kept to navigation only, with no tutorials, explanations, or other deep content that belongs on its own page?
 
 ---
