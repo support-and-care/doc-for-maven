@@ -26,10 +26,10 @@ When in doubt about where content belongs, ask what the reader is trying to do a
 
 | Type | Orientation | Reader's question | Analogy |
 | ------ | ------------- | ------------------- | --------- |
-| **Tutorial** | Learning | "Teach me the basics by doing." | Teaching a child to cook |
-| **How-to guide** | Goal | "How do I solve *this specific* problem?" | Following a recipe |
-| **Reference** | Information | "What are the exact facts/parameters?" | An ingredient encyclopedia |
-| **Explanation** | Understanding | "Why does it work this way?" | An article on culinary history |
+| Tutorial | Learning | "Teach me the basics by doing." | Teaching a child to cook |
+| How-to guide | Goal | "How do I solve *this specific* problem?" | Following a recipe |
+| Reference | Information | "What are the exact facts/parameters?" | An ingredient encyclopedia |
+| Explanation | Understanding | "Why does it work this way?" | An article on culinary history |
 
 Keep these separate.
 The clarity comes from the separation, not from any single page being exhaustive.
@@ -40,7 +40,7 @@ The clarity comes from the separation, not from any single page being exhaustive
 
 The landing page is a **signpost, not a destination**.
 Think of it as a train station: its only job is to route each reader to the right learning flow.
-It should not contain detailed content.
+It should not contain detailed content but it can contain crucial context to identify that the landing page is the right place for the developer.
 
 ### Goal: shorten time to meaningful value
 
@@ -54,18 +54,18 @@ You can organize the landing page according to those categories:
 
 - **By role / persona**:
   - Maven User: 
-    - Build engineer/DevOps engineer: Needs to understand how to correctly deploy and maintain Maven software (deep understanding)
     - Application developer: Consume the Maven software product
-  - Plugins developer: Advanced users who want to build custom tooling using Maven
-  - Maven Developer: Contribute to the Maven software
+    - Build engineer/DevOps engineer: Needs to understand how to correctly deploy and maintain Maven software (deep understanding)
+  - Plugins developer: Build custom tooling using Maven as an advanced user
+  - Maven developer: Contribute to the Maven software
 
 Each persona links to a tailored flow.
 
 - **By product** — when the docs portal spans multiple products, list products at level 1, each leading to its own product homepage at level 2.
-We exclude any module (plugin documentation) from this home page.
+We exclude any plugin documentation from this home page.
 - **By task or intent** — e.g. "Get started", "Configure a build", "Migrate from X".
 
-The goal is that a reader can identify in under 10 seconds "that's me" and start the learning journey they need.
+The goal is that a reader can identify in under 10 seconds the start of the learning journey they need.
 For instance, a DevOps engineer finding the docs about how to deploy a project. 
 
 ### Convey hierarchy and scope
@@ -77,7 +77,7 @@ This kind of structure is extremely important for devs to understand the informa
 
 ### Landing page checklist
 
-- [ ] Can a first-time visitor identify their path in under 5 seconds?
+- [ ] Can a first-time visitor identify their path in under 15 seconds? And understand which information is crucial to find their learning path.
 - [ ] Are the four content types discoverable from here?
 - [ ] Does "Get Started" stand out as the primary Call-To-Action (CTA)?
 - [ ] Is the page kept to navigation only, with no tutorials, explanations, or other deep content that belongs on its own page?
@@ -87,13 +87,6 @@ This kind of structure is extremely important for devs to understand the informa
 ## 2. Getting started guide
 
 This is **the most important guide in the docs.** It is a special, high-stakes tutorial: the reader's first real interaction. 
-
-### Go beyond "Hello World"
-
-A guide that only prints a message or makes one trivial call leaves the reader thinking "…now what?" It does not show real value.
-Instead, design the getting started around a **minimal but meaningful first goal**.
-
-Ask: *what is the first useful outcome a developer wants from Maven?* 
 
 ### Structure
 
@@ -133,6 +126,9 @@ They teach by doing.
 
 - **One feature, one basic but useful outcome.** Don't try to accomplish too much in one tutorial.
 It's more about teaching the foundational skills for a single feature.
+- **State assumptions and prerequisites up front**.
+Open with a "What you'll learn" section so readers immediately know what the tutorial covers.
+Follow it with a prerequisites section that clearly lists any required knowledge or setup.
 - **Hand-holding tone.** Assume a newcomer is reading this tutorial.
 Tone: friendly, encouraging, no unexplained leaps.
 - **Provide sufficient context at every step:** Start with a short explanation of what's happening.
@@ -152,7 +148,7 @@ Similar writing style but they have a different scope.
 
 ## 4. How-to guides
 
-A how-to guide is a **goal-oriented content type.** They assume the reader already knows the basics and now needs to accomplish one specific thing or solve a problem, e.g. "Configure a multi-module build", "Deploy artifacts to a private repository", "Set up the failsafe plugin for integration tests." They don't need extensive handholding or prerequisites as this has been covered by the getting started and feature-specific tutorial.
+A how-to guide is a **goal-oriented content type.** They assume the reader already knows the basics and now needs to accomplish one specific thing or solve a problem, e.g. "Configure a multi-module (subproject) build", "Deploy artifacts to a private repository", "Set up the failsafe plugin for integration tests." They don't need extensive handholding or prerequisites as this has been covered by the getting started and feature-specific tutorial.
 
 ### How-to guide rules
 
