@@ -159,7 +159,7 @@ Because a tutorial teaches by doing, it opens by telling the reader what they'll
 > In this tutorial you'll add a JUnit test to a Maven project and run it with the Surefire plugin, which is the standard way Maven executes unit tests.
 By the end you'll have a passing test and know how to run the test phase on demand.
 >
-> ## Prerequisites (Surefire plugin)
+> ## Prerequisites
 >
 > Before starting this tutorial, you should have:
 >
@@ -300,7 +300,7 @@ The fixed *Prerequisites* and *Further reading* blocks are required; the steps b
 >
 > This guide shows how to configure a Maven project to publish its build artifacts to a private Nexus repository, so your team can share internal libraries without pushing to Maven Central.
 >
-> ## Prerequisites (nexus tutorial)
+> ## Prerequisites
 >
 > Before starting this guide, you should have:
 >
