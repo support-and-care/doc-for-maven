@@ -146,6 +146,129 @@ The getting started guide is the single front door to the whole product.
 A tutorial is one of many doors into individual features.
 Similar writing style but they have a different scope.
 
+### Tutorial reference implementation
+ 
+Use this as the canonical template for every tutorial.
+It applies the [cross-cutting rules](#7-general-technical-writing-standards) — numbered steps, per-step verification, inline debugging, visible success states, the full file after repeated edits, and next steps.
+Because a tutorial teaches by doing, it opens by telling the reader what they'll build and stays hands-on throughout.
+ 
+---
+ 
+> ## Tutorial: Run your first unit test with the Surefire plugin
+>
+> In this tutorial you'll add a JUnit test to a Maven project and run it with the Surefire plugin, which is the standard way Maven executes unit tests.
+By the end you'll have a passing test and know how to run the test phase on demand.
+>
+> ## Prerequisites (Surefire plugin)
+>
+> Before starting this tutorial, you should have:
+>
+> - Completed the [Getting Started guide](#2-getting-started-guide) and be able to run `mvn package` on a project
+> - A Java project with the standard Maven directory layout (`src/main/java`)
+>
+> You don't need to know anything about testing in Maven yet, that's what we're here to learn.
+>
+> ## Step 1: Add the JUnit dependency
+>
+> Maven needs the *JUnit library (link this to a Key Concept and use italic)* on the test classpath before it can compile or run tests.
+Open your `pom.xml` and add JUnit inside the `<dependencies>` block:
+>
+> ```xml
+> <dependency>
+>   <groupId>org.junit.jupiter</groupId>
+>   <artifactId>junit-jupiter</artifactId>
+>   <version>5.10.2</version>
+>   <scope>test</scope>
+> </dependency>
+> ```
+>
+> The `test` scope tells Maven this dependency is only needed when compiling and running tests, not in the final artifact.
+>
+> **Verify:** run `mvn dependency:tree` and confirm `junit-jupiter` appears in the output.
+If it doesn't, check that you added the dependency inside `<dependencies>` and not `<dependencyManagement>`.
+>
+> ## Step 2: Write a test
+>
+> Create a new file at `src/test/java/com/example/CalculatorTest.java`.
+Maven automatically looks for tests under `src/test/java`, so placing the file here is what makes it discoverable:
+>
+> ```java
+> package com.example;
+>
+> import org.junit.jupiter.api.Test;
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+>
+> class CalculatorTest {
+>     @Test
+>     void addsTwoNumbers() {
+>         assertEquals(4, 2 + 2);
+>     }
+> }
+> ```
+>
+> Let's walk through what this does.
+The `@Test` annotation marks `addsTwoNumbers` as a test method, so Surefire will find it and run it.
+Inside, `assertEquals(4, 2 + 2)` checks that the value we expect (`4`) matches what the code actually produces (`2 + 2`) — if the two ever differ, the test fails and Maven reports it. 
+This is a stand-in for a real assertion; in your own tests you'd call the method you're verifying in place of `2 + 2`.
+>
+> ## Step 3: Run the test
+>
+> Run the `test` phase.
+Maven compiles your code, compiles the test, and hands it to the Surefire plugin to execute:
+>
+> ```bash
+> mvn test
+> ```
+>
+> A successful run reports the test count and ends in `BUILD SUCCESS`:
+>
+> ```text
+> [INFO] --- maven-surefire-plugin:3.2.5:test (default-test) @ my-lib ---
+> [INFO] Running com.example.CalculatorTest
+> [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+> [INFO] ------------------------------------------------------------------------
+> [INFO] BUILD SUCCESS
+> [INFO] ------------------------------------------------------------------------
+> ```
+>
+> **If you see `No tests were executed`:** Surefire only picks up classes whose names end in `Test` (or start with `Test`).
+Rename the class to `CalculatorTest` if you named it something else.
+>
+> ## The complete pom.xml
+>
+> Since you edited `pom.xml` in Step 1, here's the full file for reference so you can compare against your own:
+>
+> ```xml
+> <project xmlns="http://maven.apache.org/POM/4.0.0">
+>   <modelVersion>4.0.0</modelVersion>
+>
+>   <groupId>com.example</groupId>
+>   <artifactId>my-lib</artifactId>
+>   <version>1.0.0</version>
+>
+>   <properties>
+>     <maven.compiler.release>17</maven.compiler.release>
+>     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+>   </properties>
+>
+>   <dependencies>
+>     <dependency>
+>       <groupId>org.junit.jupiter</groupId>
+>       <artifactId>junit-jupiter</artifactId>
+>       <version>5.10.2</version>
+>       <scope>test</scope>
+>     </dependency>
+>   </dependencies>
+> </project>
+> ```
+>
+> ## Next steps
+>
+> - [How to run integration tests with the Failsafe plugin](#4-how-to-guides): the companion to Surefire for slower, end-to-end tests
+> - [Concepts: The Maven build lifecycle](#5-concepts--explanations): where the `test` phase sits and why `package` runs it automatically
+ 
+---
+
 ## 4. How-to guides
 
 A how-to guide is a **goal-oriented content type.** They assume the reader already knows the basics and now needs to accomplish one specific thing or solve a problem, e.g. "Configure a multi-module (subproject) build", "Deploy artifacts to a private repository", "Set up the failsafe plugin for integration tests." They don't need extensive handholding or prerequisites as this has been covered by the getting started and feature-specific tutorial.
@@ -156,15 +279,110 @@ A how-to guide is a **goal-oriented content type.** They assume the reader alrea
 - **Assume competence.** Don't re-teach fundamentals, link to a tutorial or concept page if a prerequisite is needed.
 - **Straight to the steps.** Minimal preamble.
 The reader wants a quick solution for their problem.
-- **State assumptions and prerequisites up front**.
-Open with a "What you'll learn" section so readers immediately know what the guide covers.
-Follow it with a prerequisites section that clearly lists any required knowledge or setup.
-This saves readers from starting a guide that isn't meant for them, especially those browsing casually without a clear sense of where they've landed.
+- **Open with a fixed Prerequisites block and close with a fixed Further reading block.** Every how-to starts with an explicit *Prerequisites* section (assumed knowledge and completed steps) so the reader can tell immediately whether this guide fits, and ends with a *Further reading* section linking onward.
+Make sure to also provide extra context on why this next step is a good read for them.
+See the [reference implementation](#how-to-reference-implementation) below for the exact shape.
+- **Verifiable outcome.** End with how to confirm the goal was achieved.
 
 ### How-to vs. tutorial
 
 A tutorial teaches a skill to a learner (learning phase); a how-to helps a capable user reach a goal (while in their working phase).
 In other words, a tutorial is trying to teach you something in a pedagogical way while a how-to is direct and assumes the reader knows where they're going.
+
+### How-to reference implementation
+ 
+Use this as a template for every how-to guide.
+The fixed *Prerequisites* and *Further reading* blocks are required; the steps between them vary by guide.
+ 
+---
+ 
+> ## How to deploy artifacts to a private Nexus repository
+>
+> This guide shows how to configure a Maven project to publish its build artifacts to a private Nexus repository, so your team can share internal libraries without pushing to Maven Central.
+>
+> ## Prerequisites (nexus tutorial)
+>
+> Before starting this guide, you should have:
+>
+> - Basic knowledge of the Maven build lifecycle and the `deploy` phase
+> - Working knowledge of `settings.xml` and how Maven resolves credentials
+> - A running Nexus (or compatible) repository you can authenticate against
+> - Completed the [Getting Started guide](#2-getting-started-guide) and be able to run a successful `mvn package`
+>
+> ## Step 1: Declare the distribution repository
+>
+> Add a `<distributionManagement>` block to your `pom.xml` so Maven knows where `deploy` should publish:
+>
+> ```xml
+> <distributionManagement>
+>   <repository>
+>     <id>nexus-releases</id>
+>     <url>https://nexus.example.com/repository/maven-releases/</url>
+>   </repository>
+> </distributionManagement>
+> ```
+>
+> The `<id>` here must match the server credentials you configure in the next step.
+>
+> ## Step 2: Add credentials to settings.xml
+>
+> In your `~/.m2/settings.xml`, add a matching `<server>` entry.
+Never put credentials in `pom.xml`:
+>
+> ```xml
+> <servers>
+>   <server>
+>     <id>nexus-releases</id>
+>     <username>${env.NEXUS_USER}</username>
+>     <password>${env.NEXUS_PASSWORD}</password>
+>   </server>
+> </servers>
+> ```
+>
+> ## Step 3: Deploy
+>
+> Run the deploy phase:
+>
+> ```bash
+> mvn deploy
+> ```
+> 
+> This runs the full build lifecycle up to and including `deploy` — compiling, testing, and packaging your artifact, then uploading the resulting JAR (along with its POM and checksums) to the repository you declared in Step 1, authenticating with the credentials from Step 2.
+>
+> You should see the upload logged near the end of the output:
+>
+> ```text
+> [INFO] --- maven-deploy-plugin:3.1.1:deploy (default-deploy) @ my-lib ---
+> Uploading to nexus-releases: https://nexus.example.com/repository/maven-releases/com/example/my-lib/1.0.0/my-lib-1.0.0.jar
+> Uploaded to nexus-releases: https://nexus.example.com/repository/maven-releases/com/example/my-lib/1.0.0/my-lib-1.0.0.jar (14 kB at 21 kB/s)
+> Uploading to nexus-releases: https://nexus.example.com/repository/maven-releases/com/example/my-lib/1.0.0/my-lib-1.0.0.pom
+> Uploaded to nexus-releases: https://nexus.example.com/repository/maven-releases/com/example/my-lib/1.0.0/my-lib-1.0.0.pom (2.1 kB at 5.0 kB/s)
+> [INFO] ------------------------------------------------------------------------
+> [INFO] BUILD SUCCESS
+> [INFO] ------------------------------------------------------------------------
+> ```
+>
+> ### Verify
+>
+> A successful deploy ends with `BUILD SUCCESS` and an upload log for each artifact.
+Confirm the artifact is live:
+>
+> ```bash
+> curl -I https://nexus.example.com/repository/maven-releases/com/example/my-lib/1.0.0/my-lib-1.0.0.jar
+> ```
+>
+> A `200 OK` confirms the artifact was published.
+>
+> **If you see `401 Unauthorized`:** the `<server>` `<id>` in `settings.xml` doesn't match the `<repository>` `<id>` in `pom.xml`, or the credentials are wrong.
+Check both IDs are identical.
+>
+> ## Further reading
+>
+> - [Concepts: The Maven build lifecycle](#5-concepts--explanations): understand why `deploy` runs last and what the earlier phases produce, so you can reason about failures partway through
+> - [Maven POM Reference — Distribution Management](https://maven.apache.org/pom.html#Distribution_Management): the full set of `<distributionManagement>` options, including snapshot repositories and site deployment, when you outgrow the single-repository setup above
+> - [How to sign artifacts with GPG before deployment](#4-how-to-guides): required if you plan to publish to Maven Central or any repository that enforces signed artifacts
+ 
+---
 
 ## 5. Concepts / explanations
 
@@ -222,6 +440,11 @@ It's a golden rule of writing technical content.
 Never break the flow as this leave the reader in a messy, unclear place on where to go next.
 
 - **Always end with next steps.** Never cut off with "you're done." Point to a logical next tutorial, how-to, or concept page so the reader can continue learning.
+
+- **Use bold sparingly, and avoid italic.** The numbered-step structure already provides the visual cues a reader needs.
+If each step has one clear action, bold text isn't needed to stop readers skipping steps.
+Reserve bold for something genuinely critical (a destructive command, a non-obvious gotcha), roughly 2–3 words per tutorial or guide at most.
+Avoid italic for emphasis altogether: keep it to its conventional uses (file names, first mention of a term, and similar).
 
 - **Use different content elements from the [Zensical framework](https://zensical.org/docs/authoring/markdown/).** By using many different elements like a callout, tabgroup, cards, etc. we can create visually interesting tutorials.
 Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting! 
