@@ -266,4 +266,43 @@ None carries unique content into the new IA.
 **Biggest reclassifications:** the flat "Guides" dumping ground dissolves — each page lands in a specific persona + quadrant. "Maven Classloading" and the plugin index move to their correct content types.
 
 **Biggest new investment:** the Explanation quadrant, especially the Maven 4 Core internals set (architecture overview → per-component → workflow), best-practices docs, and the misconceptions page.
+
+---
+
+## Migration plan
+
+### Phase 1 — Restructure (highest priority)
+
+**Why first:** discoverability is the biggest lever we have.
+Most of today's content is fine, it's just unfindable or buried in a nested structure with no persona signposting.
+Landing pages, persona homepages, and the Diataxis framework should solve these issues.
+This phase is pure information architecture work: no new writing, no rewriting existing content.
+
+Scope — everything tagged **MOVE**, **MERGE**, **SPLIT**, **RECLASSIFY**, and **REMOVE** in the tables above:
+
+1. Build the top-level landing page that routes by persona (4 personas).
+2. Build each persona homepage as a quadrant signpost (Tutorials · How-to guides · Reference · Explanation).
+3. Relocate **MOVE** pages to their new home; content unchanged, URL/nav position changes.
+4. Execute **MERGE**s (POM overview + descriptor, settings overview + descriptor, the 11-item Components list, Maven Tools + sub-pages, scattered Javadoc, etc.) — combine pages, remove the now-redundant sources.
+5. Execute **SPLIT**s (Dependency Mechanism, Build Lifecycle, Building for Different Environments) — divide content between the How-to and Explanation quadrants.
+6. Apply **RECLASSIFY**s — same content, correct content-type label (e.g., "What is Maven?" → Explanation, plugin index → Reference catalog).
+7. Set up redirects for every relocated/merged/removed URL (the tables above double as the redirect map) and drop the pages in "Non-persona pages" and "Pages NOT repurposed" from primary nav.
+8. Verify no orphaned links.
+
+### Phase 2 — New content
+
+This phase is about writing new material against a settled structure.
+Pages tagged **NEW** across the tables above, roughly in priority order:
+
+- **App developer:** Running and configuring tests (Tutorial)
+- **DevOps engineer:** Set up a reproducible build (Tutorial); Deploy your first artifact to a remote repo (Tutorial); How reproducible builds work (Explanation); The multi-module reactor (Explanation)
+- **Plugin developer:** Best practices for plugin design (Explanation)
+- **Maven developer** *(heaviest investment — the internals docs)*: Maven 4 Core architecture overview; Each component in isolation; Component workflow during a build; Best practices for writing Maven internals; Misconceptions about Maven, corrected (Explanation quadrant)
+
+### Phase 3 — Rewrite according to writing style guide
+
+Rewrite existing content against the writing style guide.
+See [writing-guide.md](writing-guide.md) for the rules for each type of content.
+
+- Prioritize the highest-traffic pages first (the 5-minute and 30-minute tutorials, POM reference, settings.xml reference).
  
