@@ -1,6 +1,6 @@
 # Maven Documentation — Proposed Information Architecture
 
-A Diátaxis (Divio) restructure of the current `maven.apache.org/index.html`.
+A Diataxis (Divio) restructure of the current `maven.apache.org/index.html`.
 Organized on two orthogonal axes:
 
 - **Horizontal menu = persona** (App developer · Build/DevOps engineer · Plugin developer · Maven developer)
@@ -19,7 +19,7 @@ Legend for the "Action" column:
 - **RECLASSIFY** — page stays but is relabeled to the correct content type
 
 Every row that maps an existing page carries its current URL so this table doubles as a **redirect map**.
-See the final section for pages that are **not repurposed** and should be removed.
+See the final section for pages that are **not repurposed**.
 
 ---
 
@@ -232,10 +232,9 @@ Keep them in a global footer or "About / Community" area on the main landing pag
 
 ---
 
-## Pages NOT repurposed — remove or redirect
+## Pages not repurposed —> remove or redirect
 
-Every one of these either duplicates a page that survives, is auto-generated site boilerplate, or is a navigational stub whose content is absorbed elsewhere.
-None carries unique content into the new IA.
+The below pages are auto-generated or navigational stubs that can be removed/absorbed by other pages in the new information architecture. 
 
 ### A. Site boilerplate / auto-generated (not user documentation)
 
@@ -304,5 +303,5 @@ Pages tagged **NEW** across the tables above, roughly in priority order:
 Rewrite existing content against the writing style guide.
 See [writing-guide.md](writing-guide.md) for the rules for each type of content.
 
-- Prioritize the highest-traffic pages first (the 5-minute and 30-minute tutorials, POM reference, settings.xml reference).
+- Prioritize the highest-traffic pages first (the 5-minute and 30-minute tutorials, popular guides, ...)
  
