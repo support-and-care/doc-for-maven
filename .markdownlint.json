@@ -1,5 +1,6 @@
 {
   "no-trailing-spaces": false,
   "MD013": false,
-  "no-duplicate-heading": false
+  "no-duplicate-heading": false,
+  "no-inline-html": false
 }
