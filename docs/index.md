@@ -22,7 +22,7 @@ Each persona has its own tutorials, how-to guides, key concepts, and reference m
 
 - **[Maven developer](maven-developer/getting-started/index.md)**
 
-    Contribute to Maven itself: build from source, follow conventions, learn the internals.
+    Contribute to Maven Core itself: build from source, follow conventions, learn the internals.
 
 </div>
 
