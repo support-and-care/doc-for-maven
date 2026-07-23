@@ -14,7 +14,7 @@ Each persona has its own tutorials, how-to guides, key concepts, and reference m
 
 - **[Build / DevOps engineer](devops-engineer/getting-started/index.md)**
 
-    Deploy and maintain Maven: repositories, mirrors, releases, and reproducible builds.
+    Maintain Maven builds and infrastructure: repositories, mirrors, releases, and reproducible builds.
 
 - **[Plugin developer](plugin-developer/getting-started/index.md)**
 
