@@ -18,7 +18,8 @@ nav = [
       { "Overview" = "learning-paths/index.md" }
   ]},
   { "User Guide" = [
-      { "Overview" = "usage/index.md" }
+      { "Overview" = "usage/index.md" },
+      { "Add and exclude dependencies" = "usage/add-exclude-dependencies.md" },
   ]},
   { "Community" = [
       { "Overview" = "community/index.md" }
