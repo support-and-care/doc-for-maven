@@ -30,6 +30,10 @@ Omit `<scope>` to use the default `compile` scope.
 That puts the library on the classpath for compiling, testing, and running the main application.
 Use `<scope>test</scope>` for libraries needed only when compiling and running tests, such as JUnit.
 
+!!! tip "Maven dependency scopes"
+    Maven supports several scopes that control when a dependency is on the classpath, including `compile`, `provided`, `runtime`, and `test`.
+    See [Dependency Scope](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope) for the full list and how each scope affects transitive dependencies.
+
 Look up coordinates for public libraries on [Maven Central Search](https://search.maven.org/).
 
 !!! tip "Prefer explicit direct dependencies"
@@ -73,6 +77,7 @@ If the dependency is missing from the tree, confirm you added it inside `<depend
 `<dependencyManagement>` pins versions and other details for reuse.
 It does not add the library to the classpath by itself.
 A dependency must still be declared under `<dependencies>` for it to participate in dependency resolution.
+For more on `<dependencies>` versus `<dependencyManagement>`, see [Dependency Management](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management).
 
 ## Step 3: Exclude an unwanted transitive dependency
 
@@ -109,12 +114,15 @@ If a second dependency also pulls in `commons-logging`, it needs its own `<exclu
 Removing a library that your dependency calls at runtime can cause failures unless something compatible takes its place.
 `jcl-over-slf4j` is a logging bridge.
 It provides an implementation of the Commons Logging API and redirects calls made through that API to SLF4J, so `commons-dbcp2` keeps working.
+Declare it with `runtime` scope because your code does not compile against it.
+It is only needed when libraries call Commons Logging at runtime.
 
 ```xml
 <dependency>
   <groupId>org.slf4j</groupId>
   <artifactId>jcl-over-slf4j</artifactId>
   <version>2.0.17</version>
+  <scope>runtime</scope>
 </dependency>
 ```
 
@@ -132,8 +140,8 @@ mvn dependency:tree
 [INFO] +- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
 [INFO] |  +- org.apache.commons:commons-pool2:jar:2.12.0:compile
 [INFO] |  \- jakarta.transaction:jakarta.transaction-api:jar:1.3.3:compile
-[INFO] \- org.slf4j:jcl-over-slf4j:jar:2.0.17:compile
-[INFO]    \- org.slf4j:slf4j-api:jar:2.0.17:compile
+[INFO] \- org.slf4j:jcl-over-slf4j:jar:2.0.17:runtime
+[INFO]    \- org.slf4j:slf4j-api:jar:2.0.17:runtime
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 ```
@@ -234,6 +242,7 @@ The wildcard exclusion from step 5 is deliberately left out.
     <groupId>org.slf4j</groupId>
     <artifactId>jcl-over-slf4j</artifactId>
     <version>2.0.17</version>
+    <scope>runtime</scope>
   </dependency>
 </dependencies>
 ```
