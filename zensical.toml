@@ -20,6 +20,10 @@ nav = [
   { "User Guide" = [
       { "Overview" = "usage/index.md" }
   ]},
+  { "Key Concepts" = [
+      { "Overview" = "concepts/index.md" },
+      { "The dependency mechanism" = "concepts/dependency-mechanism.md" },
+  ]},
   { "Community" = [
       { "Overview" = "community/index.md" }
   ]}
@@ -72,6 +76,9 @@ line_spans = "__span"
 pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
 combine_header_slug = true
