@@ -77,7 +77,8 @@ This kind of structure is extremely important for devs to understand the informa
 
 ### Landing page checklist
 
-- [ ] Can a first-time visitor identify their path in under 15 seconds? And understand which information is crucial to find their learning path.
+- [ ] Can a first-time visitor identify their path in under 15 seconds?
+And understand which information is crucial to find their learning path.
 - [ ] Are the four content types discoverable from here?
 - [ ] Does "Get Started" stand out as the primary Call-To-Action (CTA)?
 - [ ] Is the page kept to navigation only, with no tutorials, explanations, or other deep content that belongs on its own page?
