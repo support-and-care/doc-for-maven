@@ -45,11 +45,13 @@ Look up coordinates for public libraries on [Maven Central Search](https://searc
 One declared dependency usually resolves to more than one JAR.
 Maven also resolves the dependencies of your dependencies (*transitive* dependencies) and puts them on the classpath without naming them in your POM.
 
-Print the tree
+Print the dependency tree with the command below so you can inspect all transitive dependencies.
 
 ```sh
 mvn dependency:tree
 ```
+
+You should see similar command output:
 
 ```text
 [INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
@@ -82,7 +84,7 @@ For more on `<dependencies>` versus `<dependencyManagement>`, see [Dependency Ma
 ## Step 3: Exclude an unwanted transitive dependency
 
 Suppose you do not want `commons-logging` on the classpath because the project routes logging through SLF4J instead.
-Add an `<exclusions>` block on the *direct* dependency that pulls it in.
+Add an `<exclusions>` block on the **direct dependency** that pulls it in.
 
 ```xml
 <dependency>
@@ -126,12 +128,13 @@ It is only needed when libraries call Commons Logging at runtime.
 </dependency>
 ```
 
-Check the result
+Print the dependency tree again with the command below so you can compare it with the earlier output that still contained the transitive dependency `commons-logging`.
 
 ```sh
 mvn dependency:tree
 ```
 
+You should see similar command output.
 `commons-logging` is gone, and the replacement sits at the top level.
 
 ```text
@@ -164,6 +167,8 @@ Then add an `<exclusions>` block on each direct dependency at the head of those 
 
 ## Step 5: Exclude every transitive dependency (optional)
 
+This step is a variant, not part of the running example.
+Skip it if you want to keep following the single exclusion and replacement from steps 3 and 4.
 To prevent all transitive dependencies of a dependency from being included through that declaration, use `*` for both coordinates.
 
 ```xml
@@ -194,9 +199,6 @@ The tree collapses to the declared artifact alone.
     Use this only when you intend to supply the full set yourself, for example when a platform BOM already manages those artifacts.
     For anything else, name the artifacts you want gone.
 
-This step is a variant, not part of the running example.
-Keep the single exclusion and replacement from steps 3 and 4 for the rest of this guide.
-
 ### Verify
 
 Run a full build so compile and test classpaths still work.
@@ -206,11 +208,13 @@ mvn package
 ```
 
 Then confirm the excluded artifact is gone by filtering the tree.
+The `-Dincludes` option uses the [dependency tree filter pattern syntax](https://maven.apache.org/plugins/maven-dependency-plugin/examples/filtering-the-dependency-tree.html).
 
 ```sh
 mvn dependency:tree -Dincludes=commons-logging:commons-logging
 ```
 
+You should see similar command output.
 Empty output between the goal banner and the separator means nothing on the classpath brings it in.
 
 ```text
