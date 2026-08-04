@@ -1202,9 +1202,10 @@ That keeps the build stable when upstream dependency graphs change.</p>
 <h2 id="step-2-inspect-what-the-dependency-brought-with-it">Step 2: Inspect what the dependency brought with it<a class="headerlink" href="#step-2-inspect-what-the-dependency-brought-with-it" title="Permanent link">&para;</a></h2>
 <p>One declared dependency usually resolves to more than one JAR.
 Maven also resolves the dependencies of your dependencies (<em>transitive</em> dependencies) and puts them on the classpath without naming them in your POM.</p>
-<p>Print the tree</p>
+<p>Print the dependency tree with the command below so you can inspect all transitive dependencies.</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mvn<span class="w"> </span>dependency:tree
 </span></code></pre></div>
+<p>You should see similar command output:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>[INFO] com.example:your-artifact:jar:1.0.0-SNAPSHOT
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>[INFO] \- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
@@ -1229,7 +1230,7 @@ A dependency must still be declared under <code>&lt;dependencies&gt;</code> for 
 For more on <code>&lt;dependencies&gt;</code> versus <code>&lt;dependencyManagement&gt;</code>, see <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management">Dependency Management</a>.</p>
 <h2 id="step-3-exclude-an-unwanted-transitive-dependency">Step 3: Exclude an unwanted transitive dependency<a class="headerlink" href="#step-3-exclude-an-unwanted-transitive-dependency" title="Permanent link">&para;</a></h2>
 <p>Suppose you do not want <code>commons-logging</code> on the classpath because the project routes logging through SLF4J instead.
-Add an <code>&lt;exclusions&gt;</code> block on the <em>direct</em> dependency that pulls it in.</p>
+Add an <code>&lt;exclusions&gt;</code> block on the <strong>direct dependency</strong> that pulls it in.</p>
 <div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;dependency&gt;</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
@@ -1265,10 +1266,11 @@ It is only needed when libraries call Commons Logging at runtime.</p>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">&lt;/dependency&gt;</span>
 </span></code></pre></div>
-<p>Check the result</p>
+<p>Print the dependency tree again with the command below so you can compare it with the earlier output that still contained the transitive dependency <code>commons-logging</code>.</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mvn<span class="w"> </span>dependency:tree
 </span></code></pre></div>
-<p><code>commons-logging</code> is gone, and the replacement sits at the top level.</p>
+<p>You should see similar command output.
+<code>commons-logging</code> is gone, and the replacement sits at the top level.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>[INFO] com.example:your-artifact:jar:1.0.0-SNAPSHOT
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>[INFO] +- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
@@ -1292,7 +1294,9 @@ For this example, the coordinates are <code>commons-logging:commons-logging</cod
 <p>If the artifact disappears from one path but reappears under another dependency, run <code>mvn dependency:tree -Dverbose -Dincludes=commons-logging:commons-logging</code> to see every path.
 Then add an <code>&lt;exclusions&gt;</code> block on each direct dependency at the head of those paths.</p>
 <h2 id="step-5-exclude-every-transitive-dependency-optional">Step 5: Exclude every transitive dependency (optional)<a class="headerlink" href="#step-5-exclude-every-transitive-dependency-optional" title="Permanent link">&para;</a></h2>
-<p>To prevent all transitive dependencies of a dependency from being included through that declaration, use <code>*</code> for both coordinates.</p>
+<p>This step is a variant, not part of the running example.
+Skip it if you want to keep following the single exclusion and replacement from steps 3 and 4.
+To prevent all transitive dependencies of a dependency from being included through that declaration, use <code>*</code> for both coordinates.</p>
 <div class="language-xml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;dependency&gt;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
@@ -1317,16 +1321,16 @@ The build can succeed and fail at runtime.
 Use this only when you intend to supply the full set yourself, for example when a platform BOM already manages those artifacts.
 For anything else, name the artifacts you want gone.</p>
 </div>
-<p>This step is a variant, not part of the running example.
-Keep the single exclusion and replacement from steps 3 and 4 for the rest of this guide.</p>
 <h3 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h3>
 <p>Run a full build so compile and test classpaths still work.</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mvn<span class="w"> </span>package
 </span></code></pre></div>
-<p>Then confirm the excluded artifact is gone by filtering the tree.</p>
+<p>Then confirm the excluded artifact is gone by filtering the tree.
+The <code>-Dincludes</code> option uses the <a href="https://maven.apache.org/plugins/maven-dependency-plugin/examples/filtering-the-dependency-tree.html">dependency tree filter pattern syntax</a>.</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dincludes<span class="o">=</span>commons-logging:commons-logging
 </span></code></pre></div>
-<p>Empty output between the goal banner and the separator means nothing on the classpath brings it in.</p>
+<p>You should see similar command output.
+Empty output between the goal banner and the separator means nothing on the classpath brings it in.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>[INFO] ------------------------------------------------------------------------
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>[INFO] BUILD SUCCESS
