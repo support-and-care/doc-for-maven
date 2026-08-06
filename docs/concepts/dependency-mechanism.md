@@ -1,16 +1,17 @@
 # The dependency mechanism
 
-Maven's dependency mechanism is how a project declares the libraries it needs, how Maven resolves the libraries those libraries depend on, and how it chooses a single version when several versions of the same library appear in the graph.
+Maven's *dependency mechanism* is how a project declares the libraries it needs, how Maven resolves the libraries those libraries depend on, and how it chooses a single version when the same library is resolved in more than one version.
 
-Understanding it helps you read a `pom.xml`, see how Maven builds a reproducible classpath, and explain why a particular JAR shows up in `mvn dependency:tree`.
+Understanding the dependency mechanism helps you read a `pom.xml`, see how Maven builds a reproducible classpath, and explain why a particular JAR was chosen.
 
 ## Why Maven manages dependencies
 
 Almost every Java project uses third-party libraries.
-Without a build tool, developers download JAR files by hand, copy them into the project, and hope every machine uses the same versions.
+Without a build tool, developers download JAR files by hand, copy them into the project, and hope that every machine was set up the same way, with the same versions.
+It is also hard to see later which libraries the project actually needs, because that information lives in a `lib/` folder instead of in one clear list.
 
-Maven replaces that with a declaration.
-You list each dependency once in `pom.xml`.
+Maven replaces these error-prone manual steps with a declaration.
+You list each direct dependency once in `pom.xml`.
 Maven downloads it from a repository, stores it in the local repository, and puts it on the correct classpath for compilation, testing, or runtime.
 
 The dependency list is also documentation.
@@ -18,7 +19,11 @@ Anyone can open the POM and see which libraries the project depends on, instead 
 
 ## Artifact coordinates
 
-Maven identifies every artifact by its *coordinates*.
+In Maven, a reusable build output such as a JAR is called an *artifact*.
+With Maven you do not declare a dependency by its download URL.
+You declare it by its *coordinates*, and Maven resolves that artifact through the configured artifact repositories.
+
+Coordinates are often abbreviated as *GAV* (`groupId`, `artifactId`, and `version`):
 
 - `groupId` is the organization or project, for example `org.junit.jupiter`.
 - `artifactId` is the specific module, for example `junit-jupiter`.
@@ -28,94 +33,78 @@ Together these values uniquely identify an artifact in a repository such as [Mav
 
 Optional fields such as `type` (default `jar`) and `classifier` matter when the same module publishes more than one artifact.
 
-A dependency declaration is not "download this file from this URL."
-It tells Maven to resolve those coordinates through the configured repositories.
-
 ## Transitive dependencies
 
-When your project depends on library B, and B depends on library C, Maven adds C to your project automatically.
-Those indirectly included libraries are *transitive dependencies*.
+Libraries that your project needs only because another library needs them are called *transitive dependencies*.
+
+When project P depends on library A, and A depends on library B, Maven adds B to project P automatically.
 
 Maven finds them by reading each dependency's POM from the repository.
 There is no fixed depth limit.
-B can depend on C, C on D, D on E, and so on until the graph is complete or a cycle is detected.
+A can depend on B, B on C, C on D, and so on until the dependency tree is complete or a cycle is detected.
+
+In this example, project P declares A and E.
+A pulls in B, and B pulls in C:
 
 ``` mermaid
 graph TD
-  A["Your project"] --> B["Library B<br/>(declared)"]
+  P["Project P"] --> A["Library A<br/>(declared)"]
+  A --> B["Library B<br/>(transitive)"]
   B --> C["Library C<br/>(transitive)"]
-  C --> D["Library D<br/>(transitive)"]
-  A --> E["Library E<br/>(declared)"]
+  P --> E["Library E<br/>(declared)"]
 ```
 
 That is why a short `<dependencies>` list is enough for a real application, and why the resolved classpath is usually much larger than what you wrote in the POM.
 
-!!! tip "Declare what your code imports"
-    If your source code imports classes from library C, declare C as a direct dependency even when it already arrives through B.
-    The build stays more stable if B later removes or replaces C, and the POM documents what your project actually uses.
-
 ## Dependency mediation
 
-Different parts of the graph may ask for different versions of the same library.
+The set of direct and transitive dependencies forms a *dependency tree* (sometimes called a dependency graph).
+Different parts of that tree may ask for different versions of the same library.
 Only one version can sit on the classpath, so Maven must choose.
 That choice is *dependency mediation*.
 
 Maven uses the *nearest definition*.
 The version with the shortest path to your project wins.
-If two versions sit at the same depth, Maven picks the one whose dependency appears first in the POM.
+If two competing paths sit at the same depth, Maven picks the version reached through the dependency that appears first in the POM.
+
+Here is an example.
+Project P depends on A and E.
+A depends on B, and B depends on D 2.0.
+E depends directly on D 1.0.
+Maven selects D 1.0 because the path `P → E → D` is shorter than `P → A → B → D`:
 
 ``` mermaid
 graph TD
-  A["Project A"] --> B["B"]
-  A --> E["E"]
-  B --> C["C"]
-  C --> D2["D 2.0<br/>(depth 3)"]
+  P["Project P"] --> A["A"]
+  P --> E["E"]
+  A --> B["B"]
+  B --> D2["D 2.0<br/>(depth 3)"]
   E --> D1["D 1.0<br/>(depth 2) — selected"]
 ```
-
-In this example, project A depends on B and E.
-B depends on C, and C depends on D 2.0.
-E depends directly on D 1.0.
-Maven selects D 1.0 because the path `A → E → D` is shorter than `A → B → C → D`.
 
 You can override the choice by declaring the dependency directly in your project.
 A direct dependency is always closer than a transitive one.
 
-You can also pin versions with [`dependencyManagement`](#dependency-management), which overrides mediation for transitive dependencies.
+You can also pin versions of *transitive* dependencies with [`dependencyManagement`](#dependency-management).
+Managed versions override mediation for those transitive dependencies.
+A version you set on a direct dependency in `<dependencies>` still wins for that direct dependency.
 
 ## Dependency scope
 
-*Scope* controls two things.
-When is the dependency on the classpath, and does it propagate to projects that depend on yours?
-
-| Scope | On compile classpath | On runtime classpath | On test classpath | Transitive to dependents |
-| --- | --- | --- | --- | --- |
-| `compile` (default) | yes | yes | yes | yes |
-| `provided` | yes | no | yes | no |
-| `runtime` | no | yes | yes | yes |
-| `test` | no | no | yes | no |
-| `system` | yes | yes | yes | no |
-| `import` | | | | replaced by managed dependencies |
+*Scope* controls two things: when the dependency is on the classpath, and whether it propagates to projects that depend on yours.
 
 Each scope plays a different role in the build.
+The table below summarizes those roles.
+For background on what a classpath is in Java, see the [Java documentation on the classpath](https://docs.oracle.com/javase/8/docs/technotes/tools/findingclasses.html).
 
-`compile` is the default.
-The dependency is needed to compile and run the application.
-
-`provided` is needed during compilation, but the JDK or a container supplies it at runtime.
-The Servlet API is a typical example.
-
-`runtime` is not required for compilation, but it is needed when the application runs.
-JDBC drivers often use this scope.
-
-`test` is only for compiling and running tests, for example JUnit or Mockito.
-
-`system` is similar to `provided`, except the dependency comes from a local file instead of a repository.
-Avoid it when you can.
-It ties the build to one machine.
-
-`import` is only valid inside `dependencyManagement` on a POM dependency.
-It pulls in another POM's managed dependencies, such as a [BOM](#bills-of-materials-and-imports).
+| Scope | Description | On compile classpath | On runtime classpath | On test classpath | Transitive to dependents |
+| --- | --- | --- | --- | --- | --- |
+| `compile` (default) | Needed to compile and run the application | yes | yes | yes | yes |
+| `provided` | Needed at compile time, supplied at runtime by the JDK or a container (for example the Servlet API) | yes | no | yes | no |
+| `runtime` | Needed to run the application, but not to compile it (for example a JDBC driver) | no | yes | yes | yes |
+| `test` | Only for compiling and running tests (for example JUnit or Mockito) | no | no | yes | no |
+| `system` | Like `provided`, but loaded from a local file path (avoid when possible) | yes | yes | yes | no |
+| `import` | Imports another POM's managed dependencies inside `dependencyManagement`, such as a [BOM](#bills-of-materials-and-imports) | | | | replaced by managed dependencies |
 
 Scopes also shape what travels through the tree.
 A `test` dependency does not add its own dependencies to your main compile classpath.
@@ -123,13 +112,17 @@ A `provided` dependency is not passed on as a compile dependency to downstream p
 
 ## Dependency management
 
-The `<dependencies>` section usually does two jobs at once.
-It adds a dependency to the project and sets its version.
+The `<dependencies>` section usually does three jobs at once.
+It adds a dependency to the project and sets its version and scope.
 
-`<dependencyManagement>` splits those jobs apart.
+`<dependencyManagement>` splits version and shared configuration apart from adding the dependency to the classpath.
 
-Entries under `dependencyManagement` do not put anything on the classpath by themselves.
-They hold shared details such as version, scope, exclusions, and type.
+!!! note "`dependencyManagement` is not a dependency"
+    Entries under `dependencyManagement` do not put anything on the classpath by themselves.
+    Listing a library only there does not make it available to compile or run your code.
+    You still declare the dependency under `<dependencies>` when your project needs it on the classpath.
+
+Managed entries hold shared details such as version, scope, exclusions, and type.
 
 Child modules can then declare the same dependency without repeating the version.
 Transitive dependencies can also be pinned to a chosen version instead of leaving the result to mediation alone.
@@ -137,31 +130,35 @@ Transitive dependencies can also be pinned to a chosen version instead of leavin
 That is why multi-module projects often keep shared versions in a parent POM.
 Child modules stay shorter, and every module uses the same lineup.
 
-!!! note "`dependencyManagement` is not a dependency"
-    A library listed only under `dependencyManagement` does not appear in `mvn dependency:tree` until something under `<dependencies>`, or a transitive dependency, actually requests it.
-
 Managed versions override dependency mediation for transitive dependencies.
-If you set a version directly on a dependency in the current POM, that version still wins for that direct dependency.
+If you set a version directly on a dependency in the current POM's `<dependencies>` block, that version still wins for that direct dependency.
+
+!!! tip "Declare what your code imports"
+    If your source code imports classes from library B, declare B as a direct dependency even when it already arrives through library A.
+    The build stays more stable if A later removes or replaces B, and the POM documents what your project actually uses.
+    You can also pin shared versions with `dependencyManagement` when several modules need the same lineup.
 
 ## Bills of materials and imports
 
-A project can inherit only one parent POM, but it can import several dependency management lists.
+Think of a manufacturing *bill of materials*: a parts list that says which components, in which versions, belong together to build a product.
+A Maven *bill of materials* (BOM) plays the same role for libraries.
+It is a special POM that publishes a compatible set of versions for a family of artifacts, so related libraries stay aligned and you do not repeat versions in every project.
 
-Declare another POM inside `dependencyManagement` with `<type>pom</type>` and `<scope>import</scope>`.
+Projects pull that list in with an `import` scoped dependency inside `dependencyManagement`.
+Common examples include the JUnit BOM, Spring Boot, Jackson, and Jakarta EE stacks.
+
+Import the BOM like this.
 Maven replaces the import with the managed dependencies from that POM.
 
-Those POMs are often called a *bill of materials* (BOM).
-A BOM publishes compatible versions for a family of libraries, such as Spring Boot, Jackson, or Jakarta EE.
-
-After you import the BOM, you can declare its managed dependencies without writing versions again.
+After you import the BOM, you can declare its managed dependencies without writing versions again:
 
 ```xml
 <dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.example</groupId>
-      <artifactId>example-bom</artifactId>
-      <version>1.0.0</version>
+      <groupId>org.junit</groupId>
+      <artifactId>junit-bom</artifactId>
+      <version>5.10.2</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
@@ -170,8 +167,9 @@ After you import the BOM, you can declare its managed dependencies without writi
 
 <dependencies>
   <dependency>
-    <groupId>org.example</groupId>
-    <artifactId>example-core</artifactId>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <scope>test</scope>
     <!-- version comes from the BOM -->
   </dependency>
 </dependencies>
@@ -181,29 +179,29 @@ If two imported BOMs manage the same dependency, Maven uses the version from the
 
 ## Optional dependencies and exclusions
 
-Two more features reshape the graph without changing coordinates.
+Two more features reshape the dependency tree without changing coordinates.
 
-*Optional dependencies* let a library author mark a dependency with `<optional>true</optional>`.
+**Optional dependencies** let a library author mark a dependency with `<optional>true</optional>`.
 Downstream projects do not get that dependency unless they declare it themselves.
 
-*Exclusions* let a project drop a transitive dependency from one dependency's subtree with an `<exclusions>` block.
+**Exclusions** let a project drop a transitive dependency from one dependency's subtree with an `<exclusions>` block.
 The exclusion applies only to that dependency.
 Another dependency can still bring the same library in.
 
-Use exclusions when you mean to replace or remove something the upstream graph would otherwise include, such as a logging implementation.
+Use exclusions when you mean to replace or remove something the upstream tree would otherwise include, such as a logging implementation.
 If your own code uses a library directly, declare it as a direct dependency instead of relying on it arriving transitively.
 
 ## Putting the pieces together
 
-When Maven builds a project, it roughly does the following.
+When Maven builds a project, it roughly does the following (this is a mental model, not a strict description of every internal step):
 
 1. Collect direct dependencies from the effective POM.
 2. Resolve transitive dependencies by reading upstream POMs.
-3. Apply scopes, optional dependencies, and exclusions while walking the graph.
-4. Resolve version conflicts with `dependencyManagement` and dependency mediation.
+3. While building the tree, apply scopes, optional dependencies, exclusions, and `dependencyManagement`.
+4. Resolve remaining version conflicts with dependency mediation.
 5. Build the compile, test, and runtime classpaths.
 
-The easiest way to inspect the result is:
+The easiest way to inspect the result is using the `tree` goal of the `maven-dependency-plugin`:
 
 ```bash
 mvn dependency:tree

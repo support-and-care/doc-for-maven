@@ -58,6 +58,9 @@ accent = "orange"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
+[project.theme.icon.admonition]
+tip = "lucide/lightbulb"
+
 [project.markdown_extensions.abbr]
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.attr_list]

@@ -5,4 +5,4 @@ Explanations of how Maven works, including the mental models behind builds, depe
 ## Concepts
 
 - [The dependency mechanism](dependency-mechanism.md).
-  How Maven resolves, scopes, mediates, and manages project dependencies.
+  How Maven manages project dependencies.
