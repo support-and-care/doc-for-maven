@@ -8,7 +8,8 @@ The fastest way in: understand how plugins fit into Maven, install Maven, and wr
 
 - :material-puzzle-outline: **[Plugin architecture & the Mojo model](../key-concepts/plugin-architecture.md)**
 
-    Not sure how plugins and Mojos work? Start with the concepts before writing code.
+    Not sure how plugins and Mojos work? 
+    Start with the concepts before writing code.
 
 - :material-download-outline: **[Download and install Maven](../../about/installation.md)**
 
@@ -58,7 +59,8 @@ Expand each section below to see everything it contains.
 
 ---
 
-Need help along the way? See **[Getting Help](../../community/getting-help.md)** in the Community section.
+Need help along the way?
+See **[Getting Help](../../community/getting-help.md)** in the Community section.
 
 !!! warning "🚧 Dummy structure — content pending"
     This getting-started landing is a placeholder created during the Phase 1 information-architecture restructure.

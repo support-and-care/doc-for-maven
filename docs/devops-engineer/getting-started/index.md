@@ -8,7 +8,8 @@ The fastest way in: understand how Maven repositories fit together, install Mave
 
 - :material-sitemap-outline: **[Repository architecture & resolution](../key-concepts/repository-architecture.md)**
 
-    Not sure how local, remote, and mirror repositories fit together? Start with the concepts before touching configuration.
+    Not sure how local, remote, and mirror repositories fit together? 
+    Start with the concepts before touching configuration.
 
 - :material-download-outline: **[Download and install Maven](../../about/installation.md)**
 
@@ -64,7 +65,8 @@ Expand each section below to see everything it contains.
 
 ---
 
-Need help along the way? See **[Getting Help](../../community/getting-help.md)** in the Community section.
+Need help along the way?
+See **[Getting Help](../../community/getting-help.md)** in the Community section.
 
 !!! warning "🚧 Dummy structure — content pending"
     This getting-started landing is a placeholder created during the Phase 1 information-architecture restructure.

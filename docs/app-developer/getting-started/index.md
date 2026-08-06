@@ -8,7 +8,8 @@ The fastest way in: understand what Maven does, install it, and run your first b
 
 - :material-help-circle-outline: **[What is Maven (for)?](../key-concepts/what-maven-is.md)**
 
-    Not sure Maven is the right tool? Start with what it is, what it solves, and what it isn't.
+    Not sure Maven is the right tool? 
+    Start with what it is, what it solves, and what it isn't.
 
 - :material-download-outline: **[Download and install Maven](../../about/installation.md)**
 
@@ -67,7 +68,8 @@ Expand each section below to see everything it contains.
 
 ---
 
-Need help along the way? See **[Getting Help](../../community/getting-help.md)** in the Community section.
+Need help along the way? 
+See **[Getting Help](../../community/getting-help.md)** in the Community section.
 
 !!! warning "🚧 Dummy structure — content pending"
     This getting-started landing is a placeholder created during the Phase 1 information-architecture restructure.
