@@ -1,20 +1,23 @@
 # How to add and exclude dependencies
 
+<!-- markdownlint-disable MD046 -->
+<!-- Admonition body text is indented; markdownlint misreports that as indented code blocks. -->
+
 This guide shows how to declare a library in your `pom.xml`, remove an unwanted *transitive* dependency it brings in, and put a compatible replacement on the classpath when needed.
 
 ## Prerequisites
 
 Before starting this guide, you should have:
 
-- Maven installed and available on your `PATH`.
-See [Installing Apache Maven](../get-started/install-maven.md).
-- A Maven project with a working `pom.xml` that builds successfully (`mvn package`).
-- Completed the [Basic project sample](../get-started/basic-project-sample.md), or equivalent familiarity with project coordinates and the `<dependencies>` section.
+- Maven installed and available on your `PATH` (see [Installing Apache Maven](../get-started/install-maven.md))
+- A Maven project with a working `pom.xml` that builds successfully (`mvn package`)
+- Completed the [Basic project sample](../get-started/basic-project-sample.md), or equivalent familiarity with project coordinates and the `<dependencies>` section
 
 ## Step 1: Add a dependency
 
 Declare the library under `<dependencies>` in `pom.xml`.
 Maven identifies each artifact by its *coordinates* (`groupId`, `artifactId`, and `version`).
+Look up coordinates for public libraries on [Maven Central Search](https://search.maven.org/).
 
 ```xml
 <dependencies>
@@ -29,20 +32,11 @@ Maven identifies each artifact by its *coordinates* (`groupId`, `artifactId`, an
 Omit `<scope>` to use the default `compile` scope.
 That puts the library on the classpath for compiling, testing, and running the main application.
 Use `<scope>test</scope>` for libraries needed only when compiling and running tests, such as JUnit.
-
-!!! tip "Maven dependency scopes"
-    Maven supports several scopes that control when a dependency is on the classpath, including `compile`, `provided`, `runtime`, and `test`.
-    See [Dependency Scope](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope) for the full list and how each scope affects transitive dependencies.
-
-Look up coordinates for public libraries on [Maven Central Search](https://search.maven.org/).
-
-!!! tip "Prefer explicit direct dependencies"
-    If your source code imports types from a library, declare that library in your POM even when another dependency already pulls it in transitively.
-    That keeps the build stable when upstream dependency graphs change.
+Read more about scopes in the [Dependency Scope](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope) section of the dependency mechanism article.
 
 ## Step 2: Inspect what the dependency brought with it
 
-One declared dependency usually resolves to more than one JAR.
+One declared dependency may resolve to more than one JAR.
 Maven also resolves the dependencies of your dependencies (*transitive* dependencies) and puts them on the classpath without naming them in your POM.
 
 Print the dependency tree with the command below so you can inspect all transitive dependencies.
@@ -73,13 +67,14 @@ The exact output may differ depending on the dependency version.
 Run `mvn dependency:tree` again after every change in this guide.
 It shows the dependency graph Maven resolved for the project.
 
-If you see `Could not find artifact`, check that `groupId`, `artifactId`, and `version` match [Maven Central](https://search.maven.org/), and that your machine can reach the configured repositories.
+!!! warning "Troubleshooting dependency resolution"
+    If you see `Could not find artifact`, check that `groupId`, `artifactId`, and `version` match [Maven Central](https://search.maven.org/), and that your machine can reach the configured repositories.
 
-If the dependency is missing from the tree, confirm you added it inside `<dependencies>`, not only inside `<dependencyManagement>`.
-`<dependencyManagement>` pins versions and other details for reuse.
-It does not add the library to the classpath by itself.
-A dependency must still be declared under `<dependencies>` for it to participate in dependency resolution.
-For more on `<dependencies>` versus `<dependencyManagement>`, see [Dependency Management](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management).
+    If the dependency is missing from the tree, confirm you added it inside `<dependencies>`, not only inside `<dependencyManagement>`.
+    `<dependencyManagement>` pins versions and other details for reuse.
+    It does not add the library to the classpath by itself.
+    A dependency must still be declared under `<dependencies>` for it to participate in dependency resolution.
+    For more on `<dependencies>` versus `<dependencyManagement>`, see [Dependency Management](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management).
 
 ## Step 3: Exclude an unwanted transitive dependency
 
@@ -108,7 +103,7 @@ Exclusions are per dependency.
 If a second dependency also pulls in `commons-logging`, it needs its own `<exclusions>` block.
 
 !!! warning "Use exclusions intentionally"
-    Prefer upgrading the upstream dependency, or declaring a direct dependency when your own code imports that library.
+    Prefer upgrading the upstream dependency, or declaring a direct dependency when your own code imports that library, over using exclusions.
     Exclusions are appropriate when you need to control the dependency graph, for example to replace a logging implementation or drop a transitive artifact you cannot accept.
 
 ## Step 4: Replace what you removed when the library still needs it
@@ -167,8 +162,10 @@ Then add an `<exclusions>` block on each direct dependency at the head of those 
 
 ## Step 5: Exclude every transitive dependency (optional)
 
-This step is a variant, not part of the running example.
-Skip it if you want to keep following the single exclusion and replacement from steps 3 and 4.
+!!! note "Not part of the running example"
+    This step is a variant.
+    Skip it if you want to keep following the single exclusion and replacement from steps 3 and 4.
+
 To prevent all transitive dependencies of a dependency from being included through that declaration, use `*` for both coordinates.
 
 ```xml
