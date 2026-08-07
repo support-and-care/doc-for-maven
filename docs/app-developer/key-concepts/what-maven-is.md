@@ -55,7 +55,8 @@ Maven is designed to solve them:
 - **"Do I have all the libraries I need, and in which versions?"**
   Maven downloads them, including the libraries those libraries depend on, with versions pinned in `pom.xml` and resolved the same way on every machine and CI server.
 - **"Where does source code belong? 
-  Where are tests stored? Where is everything in this project?"**
+  Where are tests stored? 
+  Where is everything in this project?"**
   Maven uses a standard directory layout, so the project structure is always familiar, even when joining a new team.
 - **"How do I share my library with other projects?"**
   Maven can publish the build output to a repository such as [Maven Central](https://search.maven.org/), which makes it easy to share libraries with the wider Java community.
