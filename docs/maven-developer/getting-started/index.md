@@ -20,7 +20,8 @@ The fastest way in: set up your development environment, build Maven from source
 
 - :material-sitemap-outline: **[Maven 4 Core architecture overview](../key-concepts/core-architecture-overview.md)**
 
-    Not sure how the core components fit together? Start here before diving into the internals.
+    Not sure how the core components fit together? 
+    Start here before diving into the internals.
 
 </div>
 
@@ -55,7 +56,8 @@ Expand each section below to see everything it contains.
 
 ---
 
-Need help along the way? See **[Getting Help](../../community/getting-help.md)** in the Community section.
+Need help along the way? 
+See **[Getting Help](../../community/getting-help.md)** in the Community section.
 
 !!! warning "🚧 Dummy structure — content pending"
     This getting-started landing is a placeholder created during the Phase 1 information-architecture restructure.
