@@ -77,7 +77,8 @@ This kind of structure is extremely important for devs to understand the informa
 
 ### Landing page checklist
 
-- [ ] Can a first-time visitor identify their path in under 15 seconds? And understand which information is crucial to find their learning path.
+- [ ] Can a first-time visitor identify their path in under 15 seconds? 
+      And understand which information is crucial to find their learning path.
 - [ ] Are the four content types discoverable from here?
 - [ ] Does "Get Started" stand out as the primary Call-To-Action (CTA)?
 - [ ] Is the page kept to navigation only, with no tutorials, explanations, or other deep content that belongs on its own page?
@@ -447,4 +448,4 @@ Reserve bold for something genuinely critical (a destructive command, a non-obvi
 Avoid italic for emphasis altogether: keep it to its conventional uses (file names, first mention of a term, and similar).
 
 - **Use different content elements from the [Zensical framework](https://zensical.org/docs/authoring/markdown/).** By using many different elements like a callout, tabgroup, cards, etc. we can create visually interesting tutorials.
-Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting! 
+Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting!
