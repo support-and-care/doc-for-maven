@@ -448,4 +448,4 @@ Reserve bold for something genuinely critical (a destructive command, a non-obvi
 Avoid italic for emphasis altogether: keep it to its conventional uses (file names, first mention of a term, and similar).
 
 - **Use different content elements from the [Zensical framework](https://zensical.org/docs/authoring/markdown/).** By using many different elements like a callout, tabgroup, cards, etc. we can create visually interesting tutorials.
-Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting! 
+Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting!
