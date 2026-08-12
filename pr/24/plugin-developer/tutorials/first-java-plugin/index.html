@@ -5260,9 +5260,9 @@ By the end you'll have installed the plugin in your local repository and run it 
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before starting this tutorial, you should have:</p>
 <ul>
-<li>Maven 3.9 or newer installed and available on your <code>PATH</code>. See <a href="../../../about/installation/">Installing Apache Maven</a></li>
+<li>Maven 3.9 or newer installed and available on your <code>PATH</code> (<a href="../../../about/installation/">Installing Apache Maven</a>)</li>
 <li>A JDK that can compile Java 17 sources (JDK 17 or newer)</li>
-<li>Completed a basic Maven build at least once. See <a href="../../../app-developer/getting-started/first-build/">Your first Maven build in 5 minutes</a></li>
+<li>Completed a basic Maven build at least once (<a href="../../../app-developer/getting-started/first-build/">Your first Maven build in 5 minutes</a>)</li>
 </ul>
 <p>You don't need to know anything about Maven plugins yet, that's what we're here to learn.</p>
 <h2 id="step-1-create-the-plugin-project-layout">Step 1: Create the plugin project layout<a class="headerlink" href="#step-1-create-the-plugin-project-layout" title="Permanent link">&para;</a></h2>
@@ -5347,13 +5347,14 @@ It should match:</p>
 <li><code>maven-plugin</code> packaging applies the plugin build lifecycle, including plugin descriptor generation.</li>
 <li><code>maven-plugin-api</code> provides <code>AbstractMojo</code> and related Maven 3 APIs.</li>
 <li><code>maven-plugin-annotations</code> provides <code>@Mojo</code> and <code>@Parameter</code>.</li>
-<li><code>provided</code> scope keeps those APIs off the plugin JAR. Maven supplies them at runtime.</li>
+<li><code>provided</code> scope keeps those APIs off the plugin JAR because Maven supplies them at runtime.</li>
 <li>Pinning <code>maven-plugin-plugin</code> in <code>pluginManagement</code> sets which Plugin Tools version that lifecycle uses for descriptor generation.</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Plugin naming and the Maven trademark</p>
 <p>Name community plugins <code>hello-maven-plugin</code> (the <code>${prefix}-maven-plugin</code> convention).
-Avoid <code>maven-${prefix}-plugin</code>. That naming pattern is reserved for official Apache Maven plugins with groupId <code>org.apache.maven.plugins</code>.</p>
+Avoid <code>maven-${prefix}-plugin</code>.
+That naming pattern is reserved for official Apache Maven plugins with groupId <code>org.apache.maven.plugins</code>.</p>
 </div>
 <p><strong>Verify:</strong> from <code>hello-maven-plugin/</code>, run:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mvn<span class="w"> </span>validate
@@ -5383,7 +5384,8 @@ Create <code>src/main/java/sample/plugin/GreetingMojo.java</code>:</p>
 </span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>Let's walk through what this does.
-Extending <code>AbstractMojo</code> gives you logging and the rest of the goal infrastructure. You implement <code>execute()</code>.
+Extending <code>AbstractMojo</code> gives you logging and the rest of the goal infrastructure.
+You implement <code>execute()</code>.
 <code>@Mojo(name = "sayhi")</code> registers this class as the <code>sayhi</code> goal.
 <code>getLog().info(...)</code> writes a user-visible message.
 Throwing <code>MojoExecutionException</code> fails the build with <code>BUILD FAILURE</code>.</p>
@@ -5469,7 +5471,8 @@ Add a <code>greeting</code> parameter so callers can change the message:</p>
 The artifactId <code>hello-maven-plugin</code> follows the <code>${prefix}-maven-plugin</code> convention, so Maven derives the prefix <code>hello</code>.
 Maven does not search arbitrary plugin groupIds for prefix resolution unless they are listed in <code>pluginGroups</code>.
 Add <code>sample.plugin</code> to <code>~/.m2/settings.xml</code> so the <code>hello</code> prefix can resolve to this plugin.</p>
-<p>Add this block to your existing settings file. Do not replace the whole file:</p>
+<p>Add this block to your existing settings file.
+Do not replace the whole file:</p>
 <div class="language-xml highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">&lt;settings&gt;</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="cm">&lt;!-- ... --&gt;</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="nt">&lt;pluginGroups&gt;</span>
