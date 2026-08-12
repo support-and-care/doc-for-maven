@@ -19,9 +19,9 @@ You will:
 
 Before starting this tutorial, you should have:
 
-- Maven 3.9 or newer installed and available on your `PATH`. See [Installing Apache Maven](../../about/installation.md)
+- Maven 3.9 or newer installed and available on your `PATH` ([Installing Apache Maven](../../about/installation.md))
 - A JDK that can compile Java 17 sources (JDK 17 or newer)
-- Completed a basic Maven build at least once. See [Your first Maven build in 5 minutes](../../app-developer/getting-started/first-build.md)
+- Completed a basic Maven build at least once ([Your first Maven build in 5 minutes](../../app-developer/getting-started/first-build.md))
 
 You don't need to know anything about Maven plugins yet, that's what we're here to learn.
 
@@ -116,12 +116,13 @@ Here's what the important parts do:
 - `maven-plugin` packaging applies the plugin build lifecycle, including plugin descriptor generation.
 - `maven-plugin-api` provides `AbstractMojo` and related Maven 3 APIs.
 - `maven-plugin-annotations` provides `@Mojo` and `@Parameter`.
-- `provided` scope keeps those APIs off the plugin JAR. Maven supplies them at runtime.
+- `provided` scope keeps those APIs off the plugin JAR because Maven supplies them at runtime.
 - Pinning `maven-plugin-plugin` in `pluginManagement` sets which Plugin Tools version that lifecycle uses for descriptor generation.
 
 !!! warning "Plugin naming and the Maven trademark"
     Name community plugins `hello-maven-plugin` (the `${prefix}-maven-plugin` convention).
-    Avoid `maven-${prefix}-plugin`. That naming pattern is reserved for official Apache Maven plugins with groupId `org.apache.maven.plugins`.
+    Avoid `maven-${prefix}-plugin`.
+    That naming pattern is reserved for official Apache Maven plugins with groupId `org.apache.maven.plugins`.
 
 **Verify:** from `hello-maven-plugin/`, run:
 
@@ -160,7 +161,8 @@ public class GreetingMojo extends AbstractMojo {
 ```
 
 Let's walk through what this does.
-Extending `AbstractMojo` gives you logging and the rest of the goal infrastructure. You implement `execute()`.
+Extending `AbstractMojo` gives you logging and the rest of the goal infrastructure.
+You implement `execute()`.
 `@Mojo(name = "sayhi")` registers this class as the `sayhi` goal.
 `getLog().info(...)` writes a user-visible message.
 Throwing `MojoExecutionException` fails the build with `BUILD FAILURE`.
@@ -288,7 +290,8 @@ The artifactId `hello-maven-plugin` follows the `${prefix}-maven-plugin` convent
 Maven does not search arbitrary plugin groupIds for prefix resolution unless they are listed in `pluginGroups`.
 Add `sample.plugin` to `~/.m2/settings.xml` so the `hello` prefix can resolve to this plugin.
 
-Add this block to your existing settings file. Do not replace the whole file:
+Add this block to your existing settings file.
+Do not replace the whole file:
 
 ```xml
 <settings>
