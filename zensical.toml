@@ -2,28 +2,183 @@
 site_name = "Documentation for Apache Maven"
 site_description = "Documentation site for Apache Maven."
 site_author = "Maven Team"
-copyright = "Apache, Apache Maven™, and the Apache Maven™ logo are either registered trademarks or trademarks of the Apache Software Foundation."
+copyright = """
+<nav class="asf-footer" aria-label="The Apache Software Foundation">
+  <a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a>
+  <a href="https://www.apache.org/foundation/">Foundation</a>
+  <a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a>
+  <a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a>
+  <a href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+</nav>
+Apache, Apache Maven™, and the Apache Maven™ logo are either registered trademarks or trademarks of the Apache Software Foundation.
+"""
 repo_name = "apache/maven"
 repo_url = "https://github.com/apache/maven"
 extra_css = ["assets/stylesheets/extra.css"]
 
 nav = [
   { "Home" = "index.md" },
-  { "Getting Started" = [
-      { "What is Maven (for)?" = "get-started/what-is-maven.md" },
-      { "Download and Install Maven" = "get-started/install-maven.md" },
-      { "Basic Project Sample" = "get-started/basic-project-sample.md" },
+
+  { "App Developer" = [
+      { "Getting Started" = [
+          { "Overview" = "app-developer/getting-started/index.md" },
+          { "Your first Maven build in 5 minutes" = "app-developer/getting-started/first-build.md" },
+      ]},
+      { "Tutorials" = [
+          { "Build a real project in 30 minutes" = "app-developer/tutorials/build-real-project.md" },
+          { "Running and configuring tests" = "app-developer/tutorials/running-tests.md" },
+      ]},
+      { "How-to guides" = [
+          { "Add and exclude dependencies" = "app-developer/how-to/add-exclude-dependencies.md" },
+          { "Configure a plugin" = "app-developer/how-to/configure-plugin.md" },
+          { "Migrate an existing build to Maven 4" = "app-developer/how-to/migrate-to-maven-4.md" },
+          { "Use Maven Mixins" = "app-developer/how-to/use-mixins.md" },
+          { "Build for different environments" = "app-developer/how-to/build-for-different-environments.md" },
+          { "Create an assembly" = "app-developer/how-to/create-assembly.md" },
+          { "Configure archive plugins" = "app-developer/how-to/configure-archive-plugins.md" },
+          { "Work with manifests" = "app-developer/how-to/work-with-manifests.md" },
+          { "Generate sources" = "app-developer/how-to/generate-sources.md" },
+          { "Install a 3rd-party JAR locally" = "app-developer/how-to/install-3rd-party-jar.md" },
+          { "Create an archetype" = "app-developer/how-to/create-archetype.md" },
+          { "Create a site" = "app-developer/how-to/create-site.md" },
+      ]},
+      { "Key concepts" = [
+          { "What Maven is (and common misconceptions)" = "app-developer/key-concepts/what-maven-is.md" },
+          { "What's new in Maven 4" = "app-developer/key-concepts/whats-new-maven-4.md" },
+          { "How the build lifecycle works" = "app-developer/key-concepts/how-build-lifecycle-works.md" },
+          { "The dependency mechanism" = "app-developer/key-concepts/dependency-mechanism.md" },
+          { "Introduction to repositories" = "app-developer/key-concepts/introduction-to-repositories.md" },
+          { "What is an archetype" = "app-developer/key-concepts/what-is-an-archetype.md" },
+          { "Understanding profiles" = "app-developer/key-concepts/understanding-profiles.md" },
+      ]},
+      { "Reference" = [
+          { "POM reference" = "app-developer/reference/pom-reference.md" },
+          { "settings.xml reference" = "app-developer/reference/settings-reference.md" },
+          { "Build lifecycle reference" = "app-developer/reference/build-lifecycle-reference.md" },
+          { "Standard directory layout" = "app-developer/reference/standard-directory-layout.md" },
+          { "Glossary" = "app-developer/reference/glossary.md" },
+          { "Snippet macro" = "app-developer/reference/snippet-macro.md" },
+          { "The APT format" = "app-developer/reference/apt-format.md" },
+      ]},
   ]},
-  { "Learning Paths" = [
-      { "Overview" = "learning-paths/index.md" }
+
+  { "DevOps Engineer" = [
+      { "Getting Started" = [
+          { "Overview" = "devops-engineer/getting-started/index.md" },
+      ]},
+      { "Tutorials" = [
+          { "Set up a reproducible build" = "devops-engineer/tutorials/setup-reproducible-build.md" },
+          { "Deploy your first artifact to a remote repo" = "devops-engineer/tutorials/deploy-first-artifact.md" },
+      ]},
+      { "How-to guides" = [
+          { "Deploy 3rd-party JARs to a remote repo" = "devops-engineer/how-to/deploy-3rd-party-jars-remote.md" },
+          { "Use multiple repositories" = "devops-engineer/how-to/use-multiple-repositories.md" },
+          { "Configure mirror settings" = "devops-engineer/how-to/configure-mirror-settings.md" },
+          { "Use proxies" = "devops-engineer/how-to/use-proxies.md" },
+          { "Configure authenticated HTTPS" = "devops-engineer/how-to/configure-authenticated-https.md" },
+          { "Deployment & security settings" = "devops-engineer/how-to/deployment-security-settings.md" },
+          { "Large-scale centralized deployments" = "devops-engineer/how-to/large-scale-deployments.md" },
+          { "Relocate artifacts" = "devops-engineer/how-to/relocate-artifacts.md" },
+          { "Use toolchains" = "devops-engineer/how-to/use-toolchains.md" },
+          { "Use the Release Plugin" = "devops-engineer/how-to/use-release-plugin.md" },
+          { "Multi-module builds" = "devops-engineer/how-to/multi-module-builds.md" },
+          { "Configure reproducible builds" = "devops-engineer/how-to/configure-reproducible-builds.md" },
+          { "Inject POM properties via settings.xml" = "devops-engineer/how-to/inject-pom-properties.md" },
+          { "Configure Maven" = "devops-engineer/how-to/configure-maven.md" },
+          { "Upload artifacts to Central" = "devops-engineer/how-to/upload-to-central.md" },
+          { "Repository management" = "devops-engineer/how-to/repository-management.md" },
+          { "Bash auto-completion" = "devops-engineer/how-to/bash-completion.md" },
+      ]},
+      { "Key concepts" = [
+          { "Repository architecture & resolution" = "devops-engineer/key-concepts/repository-architecture.md" },
+          { "How reproducible builds work" = "devops-engineer/key-concepts/how-reproducible-builds-work.md" },
+          { "Maven classloading" = "devops-engineer/key-concepts/maven-classloading.md" },
+          { "The multi-module reactor" = "devops-engineer/key-concepts/multi-module-reactor.md" },
+      ]},
+      { "Reference" = [
+          { "settings.xml server/security reference" = "devops-engineer/reference/settings-server-security-reference.md" },
+          { "Central Repository reference" = "devops-engineer/reference/central-repository-reference.md" },
+      ]},
   ]},
-  { "User Guide" = [
-      { "Overview" = "usage/index.md" },
-      { "Add and exclude dependencies" = "usage/add-exclude-dependencies.md" },
+
+  { "Plugin Developer" = [
+      { "Getting Started" = [
+          { "Overview" = "plugin-developer/getting-started/index.md" },
+      ]},
+      { "Tutorials" = [
+          { "Write your first Java plugin" = "plugin-developer/tutorials/first-java-plugin.md" },
+          { "Test a development version of a plugin" = "plugin-developer/tutorials/test-development-plugin.md" },
+      ]},
+      { "How-to guides" = [
+          { "Handle plugin prefix resolution" = "plugin-developer/how-to/plugin-prefix-resolution.md" },
+          { "Document a plugin to the standard" = "plugin-developer/how-to/document-plugin.md" },
+          { "Use extensions" = "plugin-developer/how-to/use-extensions.md" },
+          { "Use Modello" = "plugin-developer/how-to/use-modello.md" },
+          { "Use Ant with Maven" = "plugin-developer/how-to/use-ant-with-maven.md" },
+      ]},
+      { "Key concepts" = [
+          { "Plugin architecture & the Mojo model" = "plugin-developer/key-concepts/plugin-architecture.md" },
+          { "Best practices for plugin design" = "plugin-developer/key-concepts/plugin-design-best-practices.md" },
+      ]},
+      { "Reference" = [
+          { "Maven plugins catalog" = "plugin-developer/reference/plugins-catalog.md" },
+          { "Maven Extensions catalog" = "plugin-developer/reference/extensions-catalog.md" },
+          { "Maven Tools" = "plugin-developer/reference/maven-tools.md" },
+          { "Mojo API reference" = "plugin-developer/reference/mojo-api-reference.md" },
+          { "Plugin API Javadoc" = "plugin-developer/reference/plugin-api-javadoc.md" },
+          { "Reporting API Javadoc" = "plugin-developer/reference/reporting-api-javadoc.md" },
+          { "Archetypes reference" = "plugin-developer/reference/archetypes-reference.md" },
+          { "Parent POMs reference" = "plugin-developer/reference/parent-poms-reference.md" },
+          { "Skins reference" = "plugin-developer/reference/skins-reference.md" },
+          { "Components reference index" = "plugin-developer/reference/components-reference.md" },
+      ]},
   ]},
+
+  { "Maven Developer" = [
+      { "Getting Started" = [
+          { "Overview" = "maven-developer/getting-started/index.md" },
+      ]},
+      { "Tutorials" = [
+          { "Build Maven from source" = "maven-developer/tutorials/build-from-source.md" },
+          { "Make your first contribution" = "maven-developer/tutorials/first-contribution.md" },
+      ]},
+      { "How-to guides" = [
+          { "Set up the development environment" = "maven-developer/how-to/setup-dev-environment.md" },
+          { "Help with Maven" = "maven-developer/how-to/help-with-maven.md" },
+          { "Follow naming conventions" = "maven-developer/how-to/naming-conventions.md" },
+          { "Work around the conventions" = "maven-developer/how-to/work-around-conventions.md" },
+      ]},
+      { "Key concepts" = [
+          { "Maven 4 Core architecture overview" = "maven-developer/key-concepts/core-architecture-overview.md" },
+          { "Each component in isolation" = "maven-developer/key-concepts/components-in-isolation.md" },
+          { "Component workflow during a build" = "maven-developer/key-concepts/component-workflow.md" },
+          { "Best practices for writing Maven internals" = "maven-developer/key-concepts/internals-best-practices.md" },
+          { "Misconceptions about Maven, corrected" = "maven-developer/key-concepts/misconceptions-corrected.md" },
+      ]},
+      { "Reference" = [
+          { "Maven Core component reference" = "maven-developer/reference/core-component-reference.md" },
+          { "Model / Artifact / Settings Javadoc" = "maven-developer/reference/model-artifact-settings-javadoc.md" },
+          { "Full technical references" = "maven-developer/reference/full-technical-references.md" },
+          { "Documentation style reference" = "maven-developer/reference/documentation-style-reference.md" },
+          { "Maven conventions" = "maven-developer/reference/maven-conventions.md" },
+      ]},
+  ]},
+
+  { "About" = [
+      { "Overview" = "about/index.md" },
+      { "Installation" = "about/installation.md" },
+      { "Release Notes / History" = "about/release-notes.md" },
+      { "Security Reports" = "about/security.md" },
+      { "Resources" = "about/resources.md" },
+  ]},
+
   { "Community" = [
-      { "Overview" = "community/index.md" }
-  ]}
+      { "Overview" = "community/index.md" },
+      { "Getting Help" = "community/getting-help.md" },
+      { "Project Roles" = "community/project-roles.md" },
+      { "Issue Management" = "community/issue-management.md" },
+      { "The Maven Team" = "community/team.md" },
+  ]},
 ]
 
 [project.theme]
@@ -33,9 +188,7 @@ features = [
   "announce.dismiss",
   "content.code.copy",
   "navigation.footer",
-  "navigation.indexes",
   "navigation.path",
-  "navigation.sections",
   "navigation.tabs",
   "navigation.top",
   "search.highlight"
