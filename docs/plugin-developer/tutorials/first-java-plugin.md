@@ -1,4 +1,4 @@
-# Write your first Java plugin
+# Write your first Maven plugin 3 in Java
 
 <!-- markdownlint-disable MD046 -->
 <!-- Content tabs (===) and admonitions indent body text; markdownlint misreports that as indented code blocks. -->
@@ -45,8 +45,24 @@ Create a folder for the plugin, the Java package path, and an empty `pom.xml`:
     New-Item -ItemType File -Path "$root/pom.xml" -Force | Out-Null
     ```
 
-**Verify:** list the tree with `ls -R hello-maven-plugin` (macOS / Linux) or `tree hello-maven-plugin` if you have it.
-It should match:
+**Verify:** list the project tree for your platform.
+It should match the layout below.
+
+=== "macOS / Linux"
+
+    ```sh
+    ls -R hello-maven-plugin
+    ```
+
+    Or `tree hello-maven-plugin` if you have it.
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    Get-ChildItem -Recurse hello-maven-plugin
+    ```
+
+    Or `tree /F hello-maven-plugin` in Command Prompt.
 
 ```text
 hello-maven-plugin/
