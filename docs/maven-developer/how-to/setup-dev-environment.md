@@ -1,12 +1,27 @@
 # Set up the development environment
 
-Prepare your environment for developing Maven.
+## Prerequsites
 
-This page assumes, you are familiar with Maven in general as well as the section for app-developers and plugin-developers. 
-Installation details can also be found [in the about section](../../about/installation.md).
+This page assumes, you are familiar with Maven and Git flows in general. 
+Also, this article is expecting that you are familiar with topics covered in the article about 
+[first contributions](../tutorials/first-contribution.md)
 
-In addition, you should have enabled GPG-key validation and DCO signoff.
+## Step 1 
 
-And of course, checkout the Maven project you want to contribute to.
+Follow the installation details from the [about section](../../about/installation.md).
 
-If you are unsure, where you might contribute, have a look at the [Catalogue of existing plugins](../../plugin-developer/reference/plugins-catalog.md), the [Catalogue of existing extensions](../../plugin-developer/reference/extensions-catalog.md) or you might want to check out the [Maven Core](https://github.com/apache/maven)-project on Github.
+## Step 2
+
+Checkout the component, you want to build or to contribute to.
+If you are not sure, where to start looking for your first contributions, check 
+
+- plugins in the [Catalogue of existing plugins](../../plugin-developer/reference/plugins-catalog.md), 
+- the [Catalogue of existing extensions](../../plugin-developer/reference/extensions-catalog.md) 
+- or you might want to check out the [Maven Core](https://github.com/apache/maven)-project on Github.
+
+## Step 3
+
+Build your component in the IDE of your choice via `mvn package`.
+During this step, all necessary artifacts will be downloaded and the component project itself will be built.
+
+You are now prepared to start your work!
