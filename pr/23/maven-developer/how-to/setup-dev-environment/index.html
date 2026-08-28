@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.53">
+      <meta name="generator" content="zensical-0.0.57">
     
     
       
@@ -36,12 +36,12 @@
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -3841,6 +3841,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Set up the development environment
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="././" class="md-nav__link md-nav__link--active">
         
   
@@ -3856,6 +3873,70 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequsites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prerequsites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 1
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 2
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 3
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4737,6 +4818,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -4748,6 +4834,58 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequsites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prerequsites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 1
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 2
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 3
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4852,12 +4990,24 @@
 
 
 <h1 id="set-up-the-development-environment">Set up the development environment<a class="headerlink" href="#set-up-the-development-environment" title="Permanent link">&para;</a></h1>
-<p>Prepare your environment for developing Maven.</p>
-<p>This page assumes, you are familiar with Maven in general as well as the section for app-developers and plugin-developers. 
-Installation details can also be found <a href="../../../about/installation/">in the about section</a>.</p>
-<p>In addition, you should have enabled GPG-key validation and DCO signoff.</p>
-<p>And of course, checkout the Maven project you want to contribute to.</p>
-<p>If you are unsure, where you might contribute, have a look at the <a href="../../../plugin-developer/reference/plugins-catalog/">Catalogue of existing plugins</a>, the <a href="../../../plugin-developer/reference/extensions-catalog/">Catalogue of existing extensions</a> or you might want to check out the <a href="https://github.com/apache/maven">Maven Core</a>-project on Github.</p>
+<h2 id="prerequsites">Prerequsites<a class="headerlink" href="#prerequsites" title="Permanent link">&para;</a></h2>
+<p>This page assumes, you are familiar with Maven and Git flows in general. 
+Also, this article is expecting that you are familiar with topics covered in the article about 
+<a href="../../tutorials/first-contribution/">first contributions</a></p>
+<h2 id="step-1">Step 1<a class="headerlink" href="#step-1" title="Permanent link">&para;</a></h2>
+<p>Follow the installation details from the <a href="../../../about/installation/">about section</a>.</p>
+<h2 id="step-2">Step 2<a class="headerlink" href="#step-2" title="Permanent link">&para;</a></h2>
+<p>Checkout the component, you want to build or to contribute to.
+If you are not sure, where to start looking for your first contributions, check </p>
+<ul>
+<li>plugins in the <a href="../../../plugin-developer/reference/plugins-catalog/">Catalogue of existing plugins</a>, </li>
+<li>the <a href="../../../plugin-developer/reference/extensions-catalog/">Catalogue of existing extensions</a> </li>
+<li>or you might want to check out the <a href="https://github.com/apache/maven">Maven Core</a>-project on Github.</li>
+</ul>
+<h2 id="step-3">Step 3<a class="headerlink" href="#step-3" title="Permanent link">&para;</a></h2>
+<p>Build your component in the IDE of your choice via <code>mvn package</code>.
+During this step, all necessary artifacts will be downloaded and the component project itself will be built.</p>
+<p>You are now prepared to start your work!</p>
 
 
 
@@ -4970,7 +5120,7 @@ Apache, Apache Maven™, and the Apache Maven™ logo are either registered trad
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy","navigation.footer","navigation.path","navigation.tabs","navigation.top","search.highlight"],"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.49251538.min.js"></script>
       
     
   </body>
