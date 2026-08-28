@@ -21,7 +21,12 @@ If you are not sure, where to start looking for your first contributions, check
 
 ## Step 3
 
-Build your component in the IDE of your choice via `mvn package`.
+Build the project in the IDE of your choice with:
+
+```bash
+mvn package
+```
+
 During this step, all necessary artifacts will be downloaded and the component project itself will be built.
 
 You are now prepared to start your work!
