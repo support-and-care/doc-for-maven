@@ -25,23 +25,23 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.53">
+      <meta name="generator" content="zensical-0.0.57">
     
     
       
-        <title>Add and exclude dependencies - Documentation for Apache Maven</title>
+        <title>How to add and exclude dependencies - Documentation for Apache Maven</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-and-exclude-dependencies" class="md-skip">
+        <a href="#how-to-add-and-exclude-dependencies" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Add and exclude dependencies
+              How to add and exclude dependencies
             
           </span>
         </div>
@@ -811,6 +811,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add and exclude dependencies
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="././" class="md-nav__link md-nav__link--active">
         
   
@@ -826,6 +843,131 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prerequisites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-add-a-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 1: Add a dependency
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-inspect-what-the-dependency-brought-with-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 2: Inspect what the dependency brought with it
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-exclude-an-unwanted-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 3: Exclude an unwanted transitive dependency
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-replace-what-you-removed-when-the-library-still-needs-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 4: Replace what you removed when the library still needs it
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-exclude-every-transitive-dependency-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 5: Exclude every transitive dependency (optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Exclude every transitive dependency (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Verify
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-complete-pomxml-fragment" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The complete <code>pom.xml</code> fragment
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Further reading
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4737,6 +4879,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -4748,6 +4895,119 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prerequisites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-add-a-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 1: Add a dependency
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-inspect-what-the-dependency-brought-with-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 2: Inspect what the dependency brought with it
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-exclude-an-unwanted-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 3: Exclude an unwanted transitive dependency
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-replace-what-you-removed-when-the-library-still-needs-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 4: Replace what you removed when the library still needs it
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-exclude-every-transitive-dependency-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 5: Exclude every transitive dependency (optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Exclude every transitive dependency (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Verify
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-complete-pomxml-fragment" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The complete <code>pom.xml</code> fragment
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Further reading
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4851,13 +5111,213 @@
   
 
 
-<h1 id="add-and-exclude-dependencies">Add and exclude dependencies<a class="headerlink" href="#add-and-exclude-dependencies" title="Permanent link">&para;</a></h1>
-<p>Declare dependencies in your POM and exclude unwanted transitive ones.</p>
+<h1 id="how-to-add-and-exclude-dependencies">How to add and exclude dependencies<a class="headerlink" href="#how-to-add-and-exclude-dependencies" title="Permanent link">&para;</a></h1>
+<!-- markdownlint-disable MD046 -->
+<!-- Admonition body text is indented; markdownlint misreports that as indented code blocks. -->
+
+<p>This guide shows how to declare a library in your <code>pom.xml</code>, remove an unwanted <em>transitive</em> dependency it brings in, and put a compatible replacement on the classpath when needed.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before starting this guide, you should have:</p>
+<ul>
+<li>Maven installed and available on your <code>PATH</code> (see <a href="../../../about/installation/">Installing Apache Maven</a>)</li>
+<li>A Maven project with a working <code>pom.xml</code> that builds successfully (<code>mvn package</code>)</li>
+<li>Completed the <a href="../../getting-started/first-build/">Your first Maven build in 5 minutes</a>, or equivalent familiarity with project coordinates and the <code>&lt;dependencies&gt;</code> section</li>
+</ul>
+<h2 id="step-1-add-a-dependency">Step 1: Add a dependency<a class="headerlink" href="#step-1-add-a-dependency" title="Permanent link">&para;</a></h2>
+<p>Declare the library under <code>&lt;dependencies&gt;</code> in <code>pom.xml</code>.
+Maven identifies each artifact by its <em>coordinates</em> (<code>groupId</code>, <code>artifactId</code>, and <code>version</code>).
+Look up coordinates for public libraries on <a href="https://search.maven.org/">Maven Central Search</a>.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;dependencies&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>2.13.0<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">&lt;/dependencies&gt;</span>
+</span></code></pre></div>
+<p>Omit <code>&lt;scope&gt;</code> to use the default <code>compile</code> scope.
+That puts the library on the classpath for compiling, testing, and running the main application.
+Use <code>&lt;scope&gt;test&lt;/scope&gt;</code> for libraries needed only when compiling and running tests, such as JUnit.
+Read more about scopes in the <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope">Dependency Scope</a> section of the dependency mechanism article.</p>
+<h2 id="step-2-inspect-what-the-dependency-brought-with-it">Step 2: Inspect what the dependency brought with it<a class="headerlink" href="#step-2-inspect-what-the-dependency-brought-with-it" title="Permanent link">&para;</a></h2>
+<p>One declared dependency may resolve to more than one JAR.
+Maven also resolves the dependencies of your dependencies (<em>transitive</em> dependencies) and puts them on the classpath without naming them in your POM.</p>
+<p>Print the dependency tree with the command below so you can inspect all transitive dependencies.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mvn<span class="w"> </span>dependency:tree
+</span></code></pre></div>
+<p>You should see similar command output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>[INFO] com.example:your-artifact:jar:1.0.0-SNAPSHOT
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>[INFO] \- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>[INFO]    +- org.apache.commons:commons-pool2:jar:2.12.0:compile
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>[INFO]    +- commons-logging:commons-logging:jar:1.3.4:compile
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>[INFO]    \- jakarta.transaction:jakarta.transaction-api:jar:1.3.3:compile
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>[INFO] ------------------------------------------------------------------------
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>[INFO] BUILD SUCCESS
+</span></code></pre></div>
+<p>Read each line as <code>groupId:artifactId:type:version:scope</code>.
+Indentation shows who pulled in what.
+<code>commons-dbcp2</code> is what you declared.
+The three artifacts under it arrived with it.
+The exact output may differ depending on the dependency version.</p>
+<p>Run <code>mvn dependency:tree</code> again after every change in this guide.
+It shows the dependency graph Maven resolved for the project.</p>
 <div class="admonition warning">
-<p class="admonition-title">🚧 Dummy page — content pending</p>
-<p>Placeholder created during the Phase 1 information-architecture restructure (ID: <code>AD-H1</code>).
-The real content has not been written or migrated yet.</p>
+<p class="admonition-title">Troubleshooting dependency resolution</p>
+<p>If you see <code>Could not find artifact</code>, check that <code>groupId</code>, <code>artifactId</code>, and <code>version</code> match <a href="https://search.maven.org/">Maven Central</a>, and that your machine can reach the configured repositories.</p>
+<p>If the dependency is missing from the tree, confirm you added it inside <code>&lt;dependencies&gt;</code>, not only inside <code>&lt;dependencyManagement&gt;</code>.
+<code>&lt;dependencyManagement&gt;</code> pins versions and other details for reuse.
+It does not add the library to the classpath by itself.
+A dependency must still be declared under <code>&lt;dependencies&gt;</code> for it to participate in dependency resolution.
+For more on <code>&lt;dependencies&gt;</code> versus <code>&lt;dependencyManagement&gt;</code>, see <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management">Dependency Management</a>.</p>
 </div>
+<h2 id="step-3-exclude-an-unwanted-transitive-dependency">Step 3: Exclude an unwanted transitive dependency<a class="headerlink" href="#step-3-exclude-an-unwanted-transitive-dependency" title="Permanent link">&para;</a></h2>
+<p>Suppose you do not want <code>commons-logging</code> on the classpath because the project routes logging through SLF4J instead.
+Add an <code>&lt;exclusions&gt;</code> block on the <strong>direct dependency</strong> that pulls it in.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&lt;version&gt;</span>2.13.0<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&lt;exclusions&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&lt;exclusion&gt;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">&lt;/exclusion&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">&lt;/exclusions&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<p>An exclusion only accepts <code>groupId</code> and <code>artifactId</code>.
+You cannot and do not need to specify a version.
+It removes that artifact from this branch of the tree, whatever version would have been chosen.</p>
+<p>Exclusions are per dependency.
+If a second dependency also pulls in <code>commons-logging</code>, it needs its own <code>&lt;exclusions&gt;</code> block.</p>
+<div class="admonition warning">
+<p class="admonition-title">Use exclusions intentionally</p>
+<p>Prefer upgrading the upstream dependency, or declaring a direct dependency when your own code imports that library, over using exclusions.
+Exclusions are appropriate when you need to control the dependency graph, for example to replace a logging implementation or drop a transitive artifact you cannot accept.</p>
+</div>
+<h2 id="step-4-replace-what-you-removed-when-the-library-still-needs-it">Step 4: Replace what you removed when the library still needs it<a class="headerlink" href="#step-4-replace-what-you-removed-when-the-library-still-needs-it" title="Permanent link">&para;</a></h2>
+<p>Removing a library that your dependency calls at runtime can cause failures unless something compatible takes its place.
+<code>jcl-over-slf4j</code> is a logging bridge.
+It provides an implementation of the Commons Logging API and redirects calls made through that API to SLF4J, so <code>commons-dbcp2</code> keeps working.
+Declare it with <code>runtime</code> scope because your code does not compile against it.
+It is only needed when libraries call Commons Logging at runtime.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>jcl-over-slf4j<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&lt;version&gt;</span>2.0.17<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<p>Print the dependency tree again with the command below so you can compare it with the earlier output that still contained the transitive dependency <code>commons-logging</code>.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mvn<span class="w"> </span>dependency:tree
+</span></code></pre></div>
+<p>You should see similar command output.
+<code>commons-logging</code> is gone, and the replacement sits at the top level.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>[INFO] com.example:your-artifact:jar:1.0.0-SNAPSHOT
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>[INFO] +- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>[INFO] |  +- org.apache.commons:commons-pool2:jar:2.12.0:compile
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>[INFO] |  \- jakarta.transaction:jakarta.transaction-api:jar:1.3.3:compile
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>[INFO] \- org.slf4j:jcl-over-slf4j:jar:2.0.17:runtime
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>[INFO]    \- org.slf4j:slf4j-api:jar:2.0.17:runtime
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>[INFO] ------------------------------------------------------------------------
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>[INFO] BUILD SUCCESS
+</span></code></pre></div>
+<p>If you see <code>package ... does not exist</code> after an exclusion, your own code was importing classes from the excluded artifact and relying on it arriving transitively.
+Declare that artifact directly in <code>&lt;dependencies&gt;</code>, or provide a compatible replacement.
+Code you import from is a dependency of your project.</p>
+<p>If you see <code>NoClassDefFoundError</code> at runtime, a library you use still needs the excluded classes, even though your own source never imported them.
+Compilation can succeed because you did not reference those types.
+The JVM fails later when the library loads them.
+Put a compatible replacement on the classpath (as with <code>jcl-over-slf4j</code> above), or do not exclude that artifact.</p>
+<p>If the excluded artifact is still listed, the <code>&lt;groupId&gt;</code> or <code>&lt;artifactId&gt;</code> in <code>&lt;exclusion&gt;</code> does not match the tree.
+Copy both values exactly from the <code>dependency:tree</code> output.
+For this example, the coordinates are <code>commons-logging:commons-logging</code>, not <code>org.apache.commons:commons-logging</code>.</p>
+<p>If the artifact disappears from one path but reappears under another dependency, run <code>mvn dependency:tree -Dverbose -Dincludes=commons-logging:commons-logging</code> to see every path.
+Then add an <code>&lt;exclusions&gt;</code> block on each direct dependency at the head of those paths.</p>
+<h2 id="step-5-exclude-every-transitive-dependency-optional">Step 5: Exclude every transitive dependency (optional)<a class="headerlink" href="#step-5-exclude-every-transitive-dependency-optional" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Not part of the running example</p>
+<p>This step is a variant.
+Skip it if you want to keep following the single exclusion and replacement from steps 3 and 4.</p>
+</div>
+<p>To prevent all transitive dependencies of a dependency from being included through that declaration, use <code>*</code> for both coordinates.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&lt;version&gt;</span>2.13.0<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">&lt;exclusions&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">&lt;exclusion&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span><span class="nt">&lt;groupId&gt;</span>*<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="nt">&lt;artifactId&gt;</span>*<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nt">&lt;/exclusion&gt;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="nt">&lt;/exclusions&gt;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<p>The tree collapses to the declared artifact alone.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>[INFO] com.example:your-artifact:jar:1.0.0-SNAPSHOT
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>[INFO] \- org.apache.commons:commons-dbcp2:jar:2.13.0:compile
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">A wildcard exclusion hides future breakage</p>
+<p>Every artifact the library needs is now your responsibility, including ones added in later versions.
+Nothing warns you when an upgrade introduces a new required dependency.
+The build can succeed and fail at runtime.
+Use this only when you intend to supply the full set yourself, for example when a platform BOM already manages those artifacts.
+For anything else, name the artifacts you want gone.</p>
+</div>
+<h3 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h3>
+<p>Run a full build so compile and test classpaths still work.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mvn<span class="w"> </span>package
+</span></code></pre></div>
+<p>Then confirm the excluded artifact is gone by filtering the tree.
+The <code>-Dincludes</code> option uses the <a href="https://maven.apache.org/plugins/maven-dependency-plugin/examples/filtering-the-dependency-tree.html">dependency tree filter pattern syntax</a>.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dincludes<span class="o">=</span>commons-logging:commons-logging
+</span></code></pre></div>
+<p>You should see similar command output.
+Empty output between the goal banner and the separator means nothing on the classpath brings it in.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[INFO] --- dependency:3.7.0:tree (default-cli) @ your-artifact ---
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>[INFO] ------------------------------------------------------------------------
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>[INFO] BUILD SUCCESS
+</span></code></pre></div>
+<h2 id="the-complete-pomxml-fragment">The complete <code>pom.xml</code> fragment<a class="headerlink" href="#the-complete-pomxml-fragment" title="Permanent link">&para;</a></h2>
+<p>After steps 1 to 4, the dependency section looks like this.
+The wildcard exclusion from step 5 is deliberately left out.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">&lt;dependencies&gt;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>commons-dbcp2<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>2.13.0<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="nt">&lt;exclusions&gt;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">      </span><span class="nt">&lt;exclusion&gt;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">      </span><span class="nt">&lt;/exclusion&gt;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="nt">&lt;/exclusions&gt;</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">  </span><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">  </span><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>jcl-over-slf4j<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>2.0.17<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">    </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">  </span><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="nt">&lt;/dependencies&gt;</span>
+</span></code></pre></div>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Introduction to the Dependency Mechanism</a>.
+Covers scopes, mediation, and <code>dependencyManagement</code> when a resolved version surprises you and the tree alone does not explain it.</li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-optional-and-excludes-dependencies.html">Optional Dependencies and Dependency Exclusions</a>.
+When library authors should mark dependencies optional instead of forcing consumers to exclude them.</li>
+<li><a href="https://maven.apache.org/pom.html#Dependencies">POM Reference (Dependencies)</a>.
+Full element reference for <code>&lt;dependency&gt;</code>, including type, classifier, and optional.</li>
+<li><a href="https://maven.apache.org/plugins/maven-dependency-plugin/">Apache Maven Dependency Plugin</a>.
+Other goals such as <code>dependency:analyze</code>, which reports dependencies you use without declaring and dependencies you declare without using.</li>
+<li><a href="../../getting-started/first-build/">Your first Maven build in 5 minutes</a>.
+A from-scratch walkthrough that adds compile- and test-scoped dependencies in a small project.</li>
+</ul>
 
 
 
@@ -4970,7 +5430,7 @@ Apache, Apache Maven™, and the Apache Maven™ logo are either registered trad
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy","navigation.footer","navigation.path","navigation.tabs","navigation.top","search.highlight"],"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.49251538.min.js"></script>
       
     
   </body>
