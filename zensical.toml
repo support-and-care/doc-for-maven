@@ -133,7 +133,6 @@ nav = [
           { "Components reference index" = "plugin-developer/reference/components-reference.md" },
       ]},
   ]},
-
   { "Maven Developer" = [
       { "Getting Started" = [
           { "Overview" = "maven-developer/getting-started/index.md" },
@@ -208,6 +207,9 @@ accent = "orange"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
+[project.theme.icon.admonition]
+tip = "lucide/lightbulb"
+
 [project.markdown_extensions.abbr]
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.attr_list]
@@ -226,6 +228,9 @@ line_spans = "__span"
 pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
 combine_header_slug = true
