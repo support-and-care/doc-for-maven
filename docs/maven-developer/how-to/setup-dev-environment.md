@@ -12,7 +12,7 @@ Follow the installation details from the [about section](../../about/installatio
 
 ## Step 2
 
-Checkout the component, you want to build or to contribute to.
+Checkout the component's repository, you want to build or to contribute to.
 If you are not sure, where to start looking for your first contributions, check 
 
 - plugins in the [Catalogue of existing plugins](../../plugin-developer/reference/plugins-catalog.md), 
