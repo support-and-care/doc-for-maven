@@ -21,7 +21,7 @@ If you are not sure, where to start looking for your first contributions, check
 
 ## Step 3: Build the component
 
-Build the project in the IDE of your choice with:
+Build the project with:
 
 ```bash
 mvn verify
