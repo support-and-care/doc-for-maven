@@ -6,11 +6,11 @@ This page assumes, you are familiar with Maven and Git flows in general.
 Also, this article is expecting that you are familiar with topics covered in the article about 
 [first contributions](../tutorials/first-contribution.md)
 
-## Step 1 
+## Step 1: Setup Maven installation
 
 Follow the installation details from the [about section](../../about/installation.md).
 
-## Step 2
+## Step 2: Checkout Maven component
 
 Checkout the component's repository, you want to build or to contribute to.
 If you are not sure, where to start looking for your first contributions, check 
@@ -19,7 +19,7 @@ If you are not sure, where to start looking for your first contributions, check
 - the [Catalogue of existing extensions](../../plugin-developer/reference/extensions-catalog.md) 
 - or you might want to check out the [Maven Core](https://github.com/apache/maven)-project on Github.
 
-## Step 3
+## Step 3: Build the component
 
 Build the project in the IDE of your choice with:
 
