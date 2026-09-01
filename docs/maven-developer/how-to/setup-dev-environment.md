@@ -24,7 +24,7 @@ If you are not sure, where to start looking for your first contributions, check
 Build the project in the IDE of your choice with:
 
 ```bash
-mvn package
+mvn verify
 ```
 
 During this step, all necessary artifacts will be downloaded and the component project itself will be built.
