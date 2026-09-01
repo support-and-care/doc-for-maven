@@ -21,12 +21,18 @@ If you are not sure, where to start looking for your first contributions, check
 
 ## Step 3: Build the component
 
-Build the project with:
+Build the project with the following command.
 
 ```bash
-mvn verify
+mvn verify -P run-its
 ```
 
 During this step, all necessary artifacts will be downloaded and the component project itself will be built.
+The [profile](../../app-developer/key-concepts/understanding-profiles.md) 'run-its' profile is used in 
+many Maven projects to trigger integration test execution.
+
+## Step 4 (optional): Setup GPG signing
+
+Setup GPG keys to improve the security of your identity and commits.
 
 You are now prepared to start your work!
