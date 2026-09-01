@@ -3944,6 +3944,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#step-4-optional-setup-gpg-signing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 4 (optional): Setup GPG signing
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4895,6 +4906,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#step-4-optional-setup-gpg-signing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 4 (optional): Setup GPG signing
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5015,10 +5037,14 @@ If you are not sure, where to start looking for your first contributions, check 
 <li>or you might want to check out the <a href="https://github.com/apache/maven">Maven Core</a>-project on Github.</li>
 </ul>
 <h2 id="step-3-build-the-component">Step 3: Build the component<a class="headerlink" href="#step-3-build-the-component" title="Permanent link">&para;</a></h2>
-<p>Build the project with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mvn<span class="w"> </span>verify
+<p>Build the project with the following command.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mvn<span class="w"> </span>verify<span class="w"> </span>-P<span class="w"> </span>run-its
 </span></code></pre></div>
-<p>During this step, all necessary artifacts will be downloaded and the component project itself will be built.</p>
+<p>During this step, all necessary artifacts will be downloaded and the component project itself will be built.
+The <a href="../../../app-developer/key-concepts/understanding-profiles/">profile</a> 'run-its' profile is used in 
+many Maven projects to trigger integration test execution.</p>
+<h2 id="step-4-optional-setup-gpg-signing">Step 4 (optional): Setup GPG signing<a class="headerlink" href="#step-4-optional-setup-gpg-signing" title="Permanent link">&para;</a></h2>
+<p>Setup GPG keys to improve the security of your identity and commits.</p>
 <p>You are now prepared to start your work!</p>
 
 
