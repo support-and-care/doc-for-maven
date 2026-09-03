@@ -31,8 +31,10 @@ During this step, all necessary artifacts will be downloaded and the component p
 The [profile](../../app-developer/key-concepts/understanding-profiles.md) 'run-its' profile is used in 
 many Maven projects to trigger integration test execution.
 
-## Step 4 (optional): Setup GPG signing
+## Step 4 (optional): Setup commit signing
 
 Setup GPG keys to improve the security of your identity and commits.
+Github has a decent documentation about how to sign your commits depending on your operating system.
+You can find it here: <https://docs.github.com/de/authentication/managing-commit-signature-verification/signing-commits>
 
 You are now prepared to start your work!
