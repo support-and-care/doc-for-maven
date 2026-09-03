@@ -91,6 +91,10 @@ Open `hello-maven-plugin/pom.xml` and give Maven the coordinates, packaging, and
 
   <name>Hello Maven Plugin</name>
 
+  <prerequisites>
+    <maven>3.9.0</maven>
+  </prerequisites>
+
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -120,6 +124,14 @@ Open `hello-maven-plugin/pom.xml` and give Maven the coordinates, packaging, and
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
           <version>${maven.plugin.tools.version}</version>
+          <executions>
+            <execution>
+              <id>help-mojo</id>
+              <goals>
+                <goal>helpmojo</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -130,10 +142,12 @@ Open `hello-maven-plugin/pom.xml` and give Maven the coordinates, packaging, and
 Here's what the important parts do:
 
 - `maven-plugin` packaging applies the plugin build lifecycle, including plugin descriptor generation.
+- `<prerequisites><maven>` declares the minimum Maven version this plugin requires.
 - `maven-plugin-api` provides `AbstractMojo` and related Maven 3 APIs.
 - `maven-plugin-annotations` provides `@Mojo` and `@Parameter`.
 - `provided` scope keeps those APIs off the plugin JAR because Maven supplies them at runtime.
 - Pinning `maven-plugin-plugin` in `pluginManagement` sets which Plugin Tools version that lifecycle uses for descriptor generation.
+- The `helpmojo` execution generates a `help` goal for your plugin during the build.
 
 !!! warning "Plugin naming and the Maven trademark"
     Name community plugins `hello-maven-plugin` (the `${prefix}-maven-plugin` convention).
@@ -211,20 +225,23 @@ A successful run ends with `BUILD SUCCESS` and installs `sample.plugin:hello-mav
 [INFO] ------------------------------------------------------------------------
 ```
 
-**Verify:** confirm the descriptor and the local repository install exist:
+**Verify:** confirm the descriptor in the build output and the install in your local repository:
 
 ```sh
 ls target/classes/META-INF/maven/plugin.xml
 ls ~/.m2/repository/sample/plugin/hello-maven-plugin/1.0-SNAPSHOT/
 ```
 
-You should see `plugin.xml` and a JAR named `hello-maven-plugin-1.0-SNAPSHOT.jar`.
+`plugin.xml` lives under `target/classes` (and inside the plugin JAR).
+It is not a separate file in `~/.m2`.
+In the local repository directory you should see `hello-maven-plugin-1.0-SNAPSHOT.jar` (and the installed POM).
 
 **If you see `No plugin descriptor found` later when invoking the goal:** re-run `mvn clean install` and check that `target/classes/META-INF/maven/plugin.xml` exists after the build.
 
 ## Step 5: Run the `sayhi` goal
 
-Stay inside `hello-maven-plugin/` and invoke the goal with its full coordinates:
+After install, the plugin is available from any Maven project, not only from `hello-maven-plugin/`.
+From a directory that contains a `pom.xml`, invoke the goal with its full coordinates:
 
 ```sh
 mvn sample.plugin:hello-maven-plugin:1.0-SNAPSHOT:sayhi
@@ -233,7 +250,7 @@ mvn sample.plugin:hello-maven-plugin:1.0-SNAPSHOT:sayhi
 A successful run prints the greeting and ends in `BUILD SUCCESS`:
 
 ```text
-[INFO] --- hello:1.0-SNAPSHOT:sayhi (default-cli) @ hello-maven-plugin ---
+[INFO] --- hello:1.0-SNAPSHOT:sayhi (default-cli) @ ... ---
 [INFO] Hello, world.
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
@@ -303,8 +320,9 @@ mvn sample.plugin:hello-maven-plugin:1.0-SNAPSHOT:sayhi -Dsayhi.greeting="Hello,
 
 Typing the full coordinates every time gets old quickly.
 The artifactId `hello-maven-plugin` follows the `${prefix}-maven-plugin` convention, so Maven derives the prefix `hello`.
-Maven does not search arbitrary plugin groupIds for prefix resolution unless they are listed in `pluginGroups`.
-Add `sample.plugin` to `~/.m2/settings.xml` so the `hello` prefix can resolve to this plugin.
+If a project declares the plugin under `<build><plugins>` or `<build><pluginManagement>`, that project can resolve the `hello` prefix from those declarations.
+Outside that, Maven does not search arbitrary plugin groupIds for prefix resolution unless they are listed in `pluginGroups`.
+Add `sample.plugin` to `~/.m2/settings.xml` so the `hello` prefix can resolve without declaring the plugin in every project.
 
 Add this block to your existing settings file.
 Do not replace the whole file:
@@ -330,8 +348,8 @@ mvn hello:sayhi -Dsayhi.greeting="Hi from a short prefix!"
 [INFO] Hi from a short prefix!
 ```
 
-**If you see `No plugin found for prefix 'hello'`:** Maven is only searching the default plugin groups.
-Confirm `sample.plugin` is listed under `<pluginGroups>` in the settings file Maven is using.
+**If you see `No plugin found for prefix 'hello'`:** the current project does not declare the plugin, and Maven is only searching the default plugin groups.
+Confirm `sample.plugin` is listed under `<pluginGroups>` in the settings file Maven is using, or declare the plugin in the project's `<build><plugins>` / `<pluginManagement>`.
 
 ## Step 8: Configure the parameter in the POM (optional)
 
@@ -356,9 +374,11 @@ Add a `<plugins>` block inside the existing `<build>` section, next to `<pluginM
   </build>
 ```
 
-The configuration element name (`greeting`) matches the Mojo field name.
+You can put the same `<configuration>` under `<pluginManagement>` instead when you want shared defaults without adding the plugin to `<plugins>` yet.
+The configuration element name (`greeting`) matches the Mojo field name by default.
+You can change that XML name with `@Parameter(name = "...")` on the field.
 
-**Verify:** from `hello-maven-plugin/`, run without `-D`:
+**Verify:** from a project that has this configuration, run without `-D`:
 
 ```sh
 mvn sample.plugin:hello-maven-plugin:1.0-SNAPSHOT:sayhi
@@ -394,6 +414,10 @@ The optional `pluginGroups` settings from Step 7 and the optional `<plugins>` co
 
   <name>Hello Maven Plugin</name>
 
+  <prerequisites>
+    <maven>3.9.0</maven>
+  </prerequisites>
+
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -423,6 +447,14 @@ The optional `pluginGroups` settings from Step 7 and the optional `<plugins>` co
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
           <version>${maven.plugin.tools.version}</version>
+          <executions>
+            <execution>
+              <id>help-mojo</id>
+              <goals>
+                <goal>helpmojo</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
