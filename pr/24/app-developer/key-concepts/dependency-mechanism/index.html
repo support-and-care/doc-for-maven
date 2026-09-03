@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.57">
+      <meta name="generator" content="zensical-0.0.58">
     
     
       
@@ -44,6 +44,16 @@
         <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20class%3D%22lucide%20lucide-lightbulb%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M15%2014c.2-1%20.7-1.7%201.5-2.5%201-.9%201.5-2.2%201.5-3.5A6%206%200%200%200%206%208c0%201%20.2%202.2%201.5%203.5.7.7%201.3%201.5%201.5%202.5M9%2018h6M10%2022h4%22/%3E%3C/svg%3E');}</style>
+
 
 
     
@@ -1272,6 +1282,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  The dependency mechanism
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="././" class="md-nav__link md-nav__link--active">
         
   
@@ -1287,6 +1314,136 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-maven-manages-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Why Maven manages dependencies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#artifact-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Artifact coordinates
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transitive-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transitive dependencies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-mediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency mediation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency management
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bills-of-materials-and-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bills of materials and imports
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-dependencies-and-exclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Optional dependencies and exclusions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-pieces-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Putting the pieces together
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Next steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4737,6 +4894,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -4748,6 +4910,124 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-maven-manages-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Why Maven manages dependencies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#artifact-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Artifact coordinates
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transitive-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transitive dependencies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-mediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency mediation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dependency management
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bills-of-materials-and-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bills of materials and imports
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-dependencies-and-exclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Optional dependencies and exclusions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-pieces-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Putting the pieces together
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Next steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4852,12 +5132,228 @@
 
 
 <h1 id="the-dependency-mechanism">The dependency mechanism<a class="headerlink" href="#the-dependency-mechanism" title="Permanent link">&para;</a></h1>
-<p>How Maven resolves, scopes, and orders dependencies.</p>
-<div class="admonition warning">
-<p class="admonition-title">🚧 Dummy page — content pending</p>
-<p>Placeholder created during the Phase 1 information-architecture restructure (ID: <code>AD-E4</code>).
-The real content has not been written or migrated yet.</p>
+<p>Maven's <em>dependency mechanism</em> is how a project declares the libraries it needs, how Maven resolves the libraries those libraries depend on, and how it chooses a single version when the same library is resolved in more than one version.</p>
+<p>Understanding the dependency mechanism helps you read a <code>pom.xml</code>, see how Maven builds a reproducible classpath, and explain why a particular JAR was chosen.</p>
+<h2 id="why-maven-manages-dependencies">Why Maven manages dependencies<a class="headerlink" href="#why-maven-manages-dependencies" title="Permanent link">&para;</a></h2>
+<p>Almost every Java project uses third-party libraries.
+Without a build tool, developers download JAR files by hand, copy them into the project, and hope that every machine was set up the same way, with the same versions.
+It is also hard to see later which libraries the project actually needs, because that information lives in a <code>lib/</code> folder instead of in one clear list.</p>
+<p>Maven replaces these error-prone manual steps with a declaration.
+You list each direct dependency once in <code>pom.xml</code>.
+Maven downloads it from a repository, stores it in the local repository, and puts it on the correct classpath for compilation, testing, or runtime.</p>
+<p>The dependency list is also documentation.
+Anyone can open the POM and see which libraries the project depends on, instead of reconstructing that from a <code>lib/</code> directory.</p>
+<h2 id="artifact-coordinates">Artifact coordinates<a class="headerlink" href="#artifact-coordinates" title="Permanent link">&para;</a></h2>
+<p>In Maven, a reusable build output such as a JAR is called an <em>artifact</em>.
+With Maven you do not declare a dependency by its download URL.
+You declare it by its <em>coordinates</em>, and Maven resolves that artifact through the configured artifact repositories.</p>
+<p>Coordinates are often abbreviated as <em>GAV</em> (<code>groupId</code>, <code>artifactId</code>, and <code>version</code>):</p>
+<ul>
+<li><code>groupId</code> is the organization or project, for example <code>org.junit.jupiter</code>.</li>
+<li><code>artifactId</code> is the specific module, for example <code>junit-jupiter</code>.</li>
+<li><code>version</code> is the release to use.</li>
+</ul>
+<p>Together these values uniquely identify an artifact in a repository such as <a href="https://search.maven.org/">Maven Central</a>.</p>
+<p>Optional fields such as <code>type</code> (default <code>jar</code>) and <code>classifier</code> matter when the same module publishes more than one artifact.</p>
+<h2 id="transitive-dependencies">Transitive dependencies<a class="headerlink" href="#transitive-dependencies" title="Permanent link">&para;</a></h2>
+<p>Libraries that your project needs only because another library needs them are called <em>transitive dependencies</em>.</p>
+<p>When project P depends on library A, and A depends on library B, Maven adds B to project P automatically.</p>
+<p>Maven finds them by reading each dependency's POM from the repository.
+There is no fixed depth limit.
+A can depend on B, B on C, C on D, and so on until the dependency tree is complete or a cycle is detected.</p>
+<p>In this example, project P declares A and E.
+A pulls in B, and B pulls in C:</p>
+<pre class="mermaid"><code>graph TD
+  P["Project P"] --&gt; A["Library A&lt;br/&gt;(declared)"]
+  A --&gt; B["Library B&lt;br/&gt;(transitive)"]
+  B --&gt; C["Library C&lt;br/&gt;(transitive)"]
+  P --&gt; E["Library E&lt;br/&gt;(declared)"]</code></pre>
+<p>That is why a short <code>&lt;dependencies&gt;</code> list is enough for a real application, and why the resolved classpath is usually much larger than what you wrote in the POM.</p>
+<h2 id="dependency-mediation">Dependency mediation<a class="headerlink" href="#dependency-mediation" title="Permanent link">&para;</a></h2>
+<p>The set of direct and transitive dependencies forms a <em>dependency tree</em> (sometimes called a dependency graph).
+Different parts of that tree may ask for different versions of the same library.
+Only one version can sit on the classpath, so Maven must choose.
+That choice is <em>dependency mediation</em>.</p>
+<p>Maven uses the <em>nearest definition</em>.
+The version with the shortest path to your project wins.
+If two competing paths sit at the same depth, Maven picks the version reached through the dependency that appears first in the POM.</p>
+<p>Here is an example.
+Project P depends on A and E.
+A depends on B, and B depends on D 2.0.
+E depends directly on D 1.0.
+Maven selects D 1.0 because the path <code>P → E → D</code> is shorter than <code>P → A → B → D</code>:</p>
+<pre class="mermaid"><code>graph TD
+  P["Project P"] --&gt; A["A"]
+  P --&gt; E["E"]
+  A --&gt; B["B"]
+  B --&gt; D2["D 2.0&lt;br/&gt;(depth 3)"]
+  E --&gt; D1["D 1.0&lt;br/&gt;(depth 2) — selected"]</code></pre>
+<p>You can override the choice by declaring the dependency directly in your project.
+A direct dependency is always closer than a transitive one.</p>
+<p>You can also pin versions of <em>transitive</em> dependencies with <a href="#dependency-management"><code>dependencyManagement</code></a>.
+Managed versions override mediation for those transitive dependencies.
+A version you set on a direct dependency in <code>&lt;dependencies&gt;</code> still wins for that direct dependency.</p>
+<h2 id="dependency-scope">Dependency scope<a class="headerlink" href="#dependency-scope" title="Permanent link">&para;</a></h2>
+<p><em>Scope</em> controls two things: when the dependency is on the classpath, and whether it propagates to projects that depend on yours.</p>
+<p>Each scope plays a different role in the build.
+The table below summarizes those roles.
+For background on what a classpath is in Java, see the <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/findingclasses.html">Java documentation on the classpath</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+<th>On compile classpath</th>
+<th>On runtime classpath</th>
+<th>On test classpath</th>
+<th>Transitive to dependents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compile</code> (default)</td>
+<td>Needed to compile and run the application</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>provided</code></td>
+<td>Needed at compile time, supplied at runtime by the JDK or a container (for example the Servlet API)</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>runtime</code></td>
+<td>Needed to run the application, but not to compile it (for example a JDBC driver)</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Only for compiling and running tests (for example JUnit or Mockito)</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>Like <code>provided</code>, but loaded from a local file path (avoid when possible)</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>import</code></td>
+<td>Imports another POM's managed dependencies inside <code>dependencyManagement</code>, such as a <a href="#bills-of-materials-and-imports">BOM</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td>replaced by managed dependencies</td>
+</tr>
+</tbody>
+</table>
+<p>Scopes also shape what travels through the tree.
+A <code>test</code> dependency does not add its own dependencies to your main compile classpath.
+A <code>provided</code> dependency is not passed on as a compile dependency to downstream projects.</p>
+<h2 id="dependency-management">Dependency management<a class="headerlink" href="#dependency-management" title="Permanent link">&para;</a></h2>
+<p>The <code>&lt;dependencies&gt;</code> section usually does three jobs at once.
+It adds a dependency to the project and sets its version and scope.</p>
+<p><code>&lt;dependencyManagement&gt;</code> splits version and shared configuration apart from adding the dependency to the classpath.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>dependencyManagement</code> is not a dependency</p>
+<p>Entries under <code>dependencyManagement</code> do not put anything on the classpath by themselves.
+Listing a library only there does not make it available to compile or run your code.
+You still declare the dependency under <code>&lt;dependencies&gt;</code> when your project needs it on the classpath.</p>
 </div>
+<p>Managed entries hold shared details such as version, scope, exclusions, and type.</p>
+<p>Child modules can then declare the same dependency without repeating the version.
+Transitive dependencies can also be pinned to a chosen version instead of leaving the result to mediation alone.</p>
+<p>That is why multi-module projects often keep shared versions in a parent POM.
+Child modules stay shorter, and every module uses the same lineup.</p>
+<p>Managed versions override dependency mediation for transitive dependencies.
+If you set a version directly on a dependency in the current POM's <code>&lt;dependencies&gt;</code> block, that version still wins for that direct dependency.</p>
+<div class="admonition tip">
+<p class="admonition-title">Declare what your code imports</p>
+<p>If your source code imports classes from library B, declare B as a direct dependency even when it already arrives through library A.
+The build stays more stable if A later removes or replaces B, and the POM documents what your project actually uses.
+You can also pin shared versions with <code>dependencyManagement</code> when several modules need the same lineup.</p>
+</div>
+<h2 id="bills-of-materials-and-imports">Bills of materials and imports<a class="headerlink" href="#bills-of-materials-and-imports" title="Permanent link">&para;</a></h2>
+<p>Think of a manufacturing <em>bill of materials</em>: a parts list that says which components, in which versions, belong together to build a product.
+A Maven <em>bill of materials</em> (BOM) plays the same role for libraries.
+It is a special POM that publishes a compatible set of versions for a family of artifacts, so related libraries stay aligned and you do not repeat versions in every project.</p>
+<p>Projects pull that list in with an <code>import</code> scoped dependency inside <code>dependencyManagement</code>.
+Common examples include the JUnit BOM, Spring Boot, Jackson, and Jakarta EE stacks.</p>
+<p>Import the BOM like this.
+Maven replaces the import with the managed dependencies from that POM.</p>
+<p>After you import the BOM, you can declare its managed dependencies without writing versions again:</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;dependencyManagement&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&lt;dependencies&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">&lt;groupId&gt;</span>org.junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">&lt;artifactId&gt;</span>junit-bom<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">&lt;version&gt;</span>5.10.2<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">&lt;/dependencies&gt;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nt">&lt;/dependencyManagement&gt;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">&lt;dependencies&gt;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="cm">&lt;!-- version comes from the BOM --&gt;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nt">&lt;/dependencies&gt;</span>
+</span></code></pre></div>
+<p>If two imported BOMs manage the same dependency, Maven uses the version from the BOM imported first, unless your own <code>dependencyManagement</code> overrides it.</p>
+<h2 id="optional-dependencies-and-exclusions">Optional dependencies and exclusions<a class="headerlink" href="#optional-dependencies-and-exclusions" title="Permanent link">&para;</a></h2>
+<p>Two more features reshape the dependency tree without changing coordinates.</p>
+<p><strong>Optional dependencies</strong> let a library author mark a dependency with <code>&lt;optional&gt;true&lt;/optional&gt;</code>.
+Downstream projects do not get that dependency unless they declare it themselves.</p>
+<p><strong>Exclusions</strong> let a project drop a transitive dependency from one dependency's subtree with an <code>&lt;exclusions&gt;</code> block.
+The exclusion applies only to that dependency.
+Another dependency can still bring the same library in.</p>
+<p>Use exclusions when you mean to replace or remove something the upstream tree would otherwise include, such as a logging implementation.
+If your own code uses a library directly, declare it as a direct dependency instead of relying on it arriving transitively.</p>
+<h2 id="putting-the-pieces-together">Putting the pieces together<a class="headerlink" href="#putting-the-pieces-together" title="Permanent link">&para;</a></h2>
+<p>When Maven builds a project, it roughly does the following (this is a mental model, not a strict description of every internal step):</p>
+<ol>
+<li>Collect direct dependencies from the effective POM.</li>
+<li>Resolve transitive dependencies by reading upstream POMs.</li>
+<li>While building the tree, apply scopes, optional dependencies, exclusions, and <code>dependencyManagement</code>.</li>
+<li>Resolve remaining version conflicts with dependency mediation.</li>
+<li>Build the compile, test, and runtime classpaths.</li>
+</ol>
+<p>The easiest way to inspect the result is using the <code>tree</code> goal of the <code>maven-dependency-plugin</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mvn<span class="w"> </span>dependency:tree
+</span></code></pre></div>
+<p>Each line shows a resolved dependency and its scope.
+Indentation shows which dependency brought it in.</p>
+<p>If the tree is not what you expected, check whether the dependency was declared directly or arrived transitively, which scope it uses, whether mediation or <code>dependencyManagement</code> picked the version, and whether it was optional or excluded.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../getting-started/first-build/">Your first Maven build</a>.
+  Add compile- and test-scoped dependencies in a small project from scratch.</li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-optional-and-excludes-dependencies.html">Optional Dependencies and Dependency Exclusions</a>.
+  When to mark dependencies optional, and how exclusions reshape the graph.</li>
+<li><a href="https://maven.apache.org/pom.html#Dependencies">POM Reference — Dependencies</a>.
+  Every dependency element and attribute.</li>
+<li><a href="https://maven.apache.org/plugins/maven-dependency-plugin/">Apache Maven Dependency Plugin</a>.
+  Goals such as <code>dependency:tree</code> and <code>dependency:analyze</code>.</li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Introduction to the Dependency Mechanism</a>.
+  The classic Maven write-up, including fuller BOM examples.</li>
+</ul>
 
 
 
@@ -4970,7 +5466,7 @@ Apache, Apache Maven™, and the Apache Maven™ logo are either registered trad
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy","navigation.footer","navigation.path","navigation.tabs","navigation.top","search.highlight"],"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.49251538.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>
