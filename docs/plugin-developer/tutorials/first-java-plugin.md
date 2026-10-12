@@ -1,4 +1,4 @@
-# Write your first Maven plugin 3 in Java
+# Write your first Maven 3 plugin in Java
 
 <!-- markdownlint-disable MD046 -->
 <!-- Content tabs (===) and admonitions indent body text; markdownlint misreports that as indented code blocks. -->
