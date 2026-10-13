@@ -272,7 +272,8 @@ Rename the class to `CalculatorTest` if you named it something else.
 
 ## 4. How-to guides
 
-A how-to guide is a **goal-oriented content type.** They assume the reader already knows the basics and now needs to accomplish one specific thing or solve a problem, e.g. "Configure a multi-module (subproject) build", "Deploy artifacts to a private repository", "Set up the failsafe plugin for integration tests." They don't need extensive handholding or prerequisites as this has been covered by the getting started and feature-specific tutorial.
+A how-to guide is a **goal-oriented content type.** They assume the reader already knows the basics and now needs to accomplish one specific thing or solve a problem, e.g. "Configure a multi-module (subproject) build", "Deploy artifacts to a private repository", "Set up the failsafe plugin for integration tests."
+They don't need extensive handholding or prerequisites as this has been covered by the getting started and feature-specific tutorial.
 
 ### How-to guide rules
 
@@ -440,7 +441,8 @@ We can't expect everyone to be on the happy path.
 It's a golden rule of writing technical content.
 Never break the flow as this leave the reader in a messy, unclear place on where to go next.
 
-- **Always end with next steps.** Never cut off with "you're done." Point to a logical next tutorial, how-to, or concept page so the reader can continue learning.
+- **Always end with next steps.** Never cut off with "you're done."
+Point to a logical next tutorial, how-to, or concept page so the reader can continue learning.
 
 - **Use bold sparingly, and avoid italic.** The numbered-step structure already provides the visual cues a reader needs.
 If each step has one clear action, bold text isn't needed to stop readers skipping steps.
@@ -448,4 +450,5 @@ Reserve bold for something genuinely critical (a destructive command, a non-obvi
 Avoid italic for emphasis altogether: keep it to its conventional uses (file names, first mention of a term, and similar).
 
 - **Use different content elements from the [Zensical framework](https://zensical.org/docs/authoring/markdown/).** By using many different elements like a callout, tabgroup, cards, etc. we can create visually interesting tutorials.
-Just listing 10 steps with a few code windows doesn't look very appealing to devs. Make it a bit interesting!
+Just listing 10 steps with a few code windows doesn't look very appealing to devs.
+Make it a bit interesting!
