@@ -1,7 +1,40 @@
 # Set up the development environment
 
-Prepare your environment for developing Maven.
+## Prerequsites
 
-!!! warning "🚧 Dummy page — content pending"
-    Placeholder created during the Phase 1 information-architecture restructure (ID: `MD-H1`).
-    The real content has not been written or migrated yet.
+This page assumes, you are familiar with Maven and Git flows in general. 
+Also, this article is expecting that you are familiar with topics covered in the article about 
+[first contributions](../tutorials/first-contribution.md)
+
+## Step 1: Setup Maven installation
+
+Follow the installation details from the [about section](../../about/installation.md).
+
+## Step 2: Checkout Maven component
+
+Checkout the component's repository, you want to build or to contribute to.
+If you are not sure, where to start looking for your first contributions, check 
+
+- plugins in the [Catalogue of existing plugins](../../plugin-developer/reference/plugins-catalog.md), 
+- the [Catalogue of existing extensions](../../plugin-developer/reference/extensions-catalog.md) 
+- or you might want to check out the [Maven Core](https://github.com/apache/maven)-project on Github.
+
+## Step 3: Build the component
+
+Build the project with the following command.
+
+```bash
+mvn verify -P run-its
+```
+
+During this step, all necessary artifacts will be downloaded and the component project itself will be built.
+The [profile](../../app-developer/key-concepts/understanding-profiles.md) 'run-its' profile is used in 
+many Maven projects to trigger integration test execution.
+
+## Step 4 (optional): Setup commit signing
+
+Setup GPG keys to improve the security of your identity and commits.
+Github has a decent documentation about how to sign your commits depending on your operating system.
+You can find it here: <https://docs.github.com/de/authentication/managing-commit-signature-verification/signing-commits>
+
+You are now prepared to start your work!
