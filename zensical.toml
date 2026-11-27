@@ -179,7 +179,12 @@ nav = [
       { "Issue Management" = "community/issue-management.md" },
       { "The Maven Team" = "community/team.md" },
   ]},
+
+  { "Blog" = ["blog/index.md"] },
 ]
+
+[project.plugins.blog]
+archive = false
 
 [project.theme]
 language = "en"
@@ -238,3 +243,8 @@ alternate_style = true
 combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
+
+[project.plugins.rss]
+match_path = "blog/posts/.*"
+date_from_meta = { as_creation = "date", as_update = "date" }
+json_feed_enabled = false

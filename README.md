@@ -65,6 +65,28 @@ If you want to run the pre-commit hook manually for all files in the repository,
 pre-commit run --all-files
 ```
 
+## Writing a blog post
+
+Add a Markdown file to `docs/blog/posts/`.
+It needs a `date` in its front matter; `categories` are optional, and `draft: true` keeps it out of the published site.
+Put `<!-- more -->` after the intro to mark the end of the excerpt shown on the blog index.
+
+```markdown
+---
+date: 2026-11-27
+categories:
+  - Announcements
+---
+
+# Post title
+
+Intro paragraph.
+
+<!-- more -->
+
+Rest of the post.
+```
+
 ## GitHub Pages
 
 In the repo **Settings → Pages**, set the source to **Deploy from a branch** and choose **`gh-pages`** (root). The workflow publishes production to the site root and PR previews to `pr/<number>/`.
