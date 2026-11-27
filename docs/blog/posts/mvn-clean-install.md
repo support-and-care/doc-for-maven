@@ -1,5 +1,7 @@
 ---
 date: 2026-11-03
+authors:
+  - bukama
 categories:
   - False statements about Maven
 ---

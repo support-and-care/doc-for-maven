@@ -1,5 +1,7 @@
 ---
 date: 2026-11-08
+authors:
+  - marcphilipp
 categories:
   - False statements about Maven
 ---
